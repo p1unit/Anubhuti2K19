@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1077069220423",
+    "firebase_url": "https://anubhuti-39dbc.firebaseio.com",
+    "project_id": "anubhuti-39dbc",
+    "storage_bucket": "anubhuti-39dbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077069220423:android:a40abe84a268c4da",
+        "android_client_info": {
+          "package_name": "com.anubhuti.knit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077069220423-e77m6840n4imaih1fv12vo7tlivj6n1q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anubhuti.knit",
+            "certificate_hash": "34e0ee2daf3b6354f7eeab007249b5afa7f14163"
+          }
+        },
+        {
+          "client_id": "1077069220423-f9qiuqsl092sh3h5pit1b3o48rpi0osg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqP021C3PpCUgxj1AnTixCEsl6xRJW1QA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077069220423-c6esariotk7hgsniqql2u4b331e4m75j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
