@@ -2,9 +2,11 @@ package com.anubhuti.knit.Activities;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.res.TypedArray;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
@@ -13,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.anubhuti.knit.Fragments.TeamFragment;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.menu.DrawerAdapter;
 import com.anubhuti.knit.menu.DrawerItem;
@@ -77,15 +80,20 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         if (position == POS_LOGOUT) {
             finish();
         }
-//        slidingRootNav.closeMenu();
-//        Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
-//        showFragment(selectedScreen);
+        slidingRootNav.closeMenu();
+        TeamFragment screen =new TeamFragment();
+        showFragment(screen);
     }
 
     private void showFragment(Fragment fragment) {
-        getFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment)
-                .commit();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.commit();
+//        getFragmentManager().beginTransaction()
+//                .replace(R.id.container, fragment)
+//                .commit();
     }
 
     private DrawerItem createItemFor(int position) {
