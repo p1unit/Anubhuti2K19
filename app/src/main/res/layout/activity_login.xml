@@ -11,5 +11,11 @@
         android:id="@+id/google_sign_in"
         android:text="Google Login"
         android:layout_height="wrap_content" />
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebook_sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
 
 </RelativeLayout>

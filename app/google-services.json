@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "1077069220423-gskd9bbhtdnscsl9pon00mv3ttg7hr96.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anubhuti.knit",
+            "certificate_hash": "eaaf66cde2ea67c1d50de5b6d0e658d9376b11f0"
+          }
+        },
+        {
           "client_id": "1077069220423-f9qiuqsl092sh3h5pit1b3o48rpi0osg.apps.googleusercontent.com",
           "client_type": 3
         }
