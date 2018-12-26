@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.replace(R.id.container_home, fragment);
         fragmentTransaction.commit();
 //        getFragmentManager().beginTransaction()
 //                .replace(R.id.container, fragment)
