@@ -1,6 +1,7 @@
 package com.anubhuti.knit.Utils;
 
 import android.content.Context;
+import android.os.ParcelUuid;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class Config {
     public static final String ERROR_ILLEGAL_STATE="Internet Problem. Kindly check :(";
     public static final String SETUP_PROFILE_TOAST = "Setting up your profile. Be patient :)";
     public static final String PERMISSION_REQUEST = "Please grant necessary permission to continue :) ";
+    public static final String SHARED_PREFERENCE_FIREBASE_DATA="FIREBASEDATA";
 
     public static void logW(String TAG,String str){
         Log.w(TAG,str);

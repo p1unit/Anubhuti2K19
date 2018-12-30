@@ -2,12 +2,14 @@
 <resources>
 
     <string-array name="ld_activityScreenTitles">
-        <item>Dashboard</item>
-        <item>My Account</item>
-        <item>Messages</item>
-        <item>Cart</item>
-        <item />
-        <item>Log Out</item>
+        <item>Home</item>
+        <item>Events</item>
+        <item>Star Attraction</item>
+        <item>Enquiry</item>
+        <item>Team</item>
+        <item>Sponsers</item>
+        <item>Like us</item>
+        <item>Share App</item>
     </string-array>
 
     <array name="ld_activityScreenIcons">
@@ -15,7 +17,9 @@
         <item>@drawable/ic_account_outline_grey600_24dp</item>
         <item>@drawable/ic_email_outline_grey600_24dp</item>
         <item>@drawable/ic_cart_outline_grey600_24dp</item>
-        <item>0</item>
+        <item>@drawable/ic_cart_outline_grey600_24dp</item>
+        <item>@drawable/ic_cart_outline_grey600_24dp</item>
+        <item>@drawable/ic_logout_grey600_24dp</item>
         <item>@drawable/ic_logout_grey600_24dp</item>
     </array>
 

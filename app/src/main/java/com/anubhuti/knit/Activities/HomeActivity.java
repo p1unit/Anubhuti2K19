@@ -15,8 +15,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.anubhuti.knit.Fragments.ContactUsFragment;
+import com.anubhuti.knit.Fragments.EventsFragment;
+import com.anubhuti.knit.Fragments.HomeFragment;
+import com.anubhuti.knit.Fragments.SponserFragment;
 import com.anubhuti.knit.Fragments.TeamFragment;
 import com.anubhuti.knit.R;
+import com.anubhuti.knit.Utils.Config;
 import com.anubhuti.knit.menu.DrawerAdapter;
 import com.anubhuti.knit.menu.DrawerItem;
 import com.anubhuti.knit.menu.SimpleItem;
@@ -28,11 +33,15 @@ import java.util.Arrays;
 
 public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
 
-    private static final int POS_DASHBOARD = 0;
-    private static final int POS_ACCOUNT = 1;
-    private static final int POS_MESSAGES = 2;
-    private static final int POS_CART = 3;
-    private static final int POS_LOGOUT = 5;
+    private static final int POS_HOME = 0;
+    private static final int POS_EVENTS = 1;
+    private static final int POS_STAR_ATTRACTION = 2;
+    private static final int POS_ENQUIRY = 3;
+    private static final int POS_TEAM_DETAILS = 4;
+    private static final int POS_SPONSER_DETAIL=5;
+    private static final int POS_SHARE_APP=6;
+    private static final int POS_RATE_US=7;
+
 
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -59,30 +68,64 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         screenTitles = loadScreenTitles();
 
         DrawerAdapter adapter = new DrawerAdapter(Arrays.asList(
-                createItemFor(POS_DASHBOARD).setChecked(true),
-                createItemFor(POS_ACCOUNT),
-                createItemFor(POS_MESSAGES),
-                createItemFor(POS_CART),
-                new SpaceItem(48),
-                createItemFor(POS_LOGOUT)));
+                createItemFor(POS_HOME).setChecked(true),
+                createItemFor(POS_EVENTS),
+                createItemFor(POS_STAR_ATTRACTION),
+                createItemFor(POS_ENQUIRY),
+                createItemFor(POS_TEAM_DETAILS),
+                createItemFor(POS_SPONSER_DETAIL),
+                new SpaceItem(15),
+                createItemFor(POS_SHARE_APP),
+                createItemFor(POS_RATE_US)));
         adapter.setListener(this);
 
         RecyclerView list = findViewById(R.id.list);
-        list.setNestedScrollingEnabled(false);
+        list.setNestedScrollingEnabled(true);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
 
-        adapter.setSelected(POS_DASHBOARD);
+        adapter.setSelected(POS_HOME);
     }
 
     @Override
     public void onItemSelected(int position) {
-        if (position == POS_LOGOUT) {
-            finish();
-        }
+
+//        if (position == POS_LOGOUT) {
+//            finish();
+//        } TODO :- handel Log out in profile secrtion
+
         slidingRootNav.closeMenu();
-        TeamFragment screen =new TeamFragment();
-        showFragment(screen);
+        switch (position){
+            case 0:
+                HomeFragment homeFragment=new HomeFragment();
+                showFragment(homeFragment);
+                break;
+            case 1:
+                EventsFragment eventsFragment=new EventsFragment();
+                showFragment(eventsFragment);
+                break;
+            case 2:
+                // ToDo yet to build
+                break;
+            case 3:
+                ContactUsFragment fragment=new ContactUsFragment();
+                showFragment(fragment);
+                break;
+            case 4:
+                TeamFragment teamFragment=new TeamFragment();
+                showFragment(teamFragment);
+                break;
+            case 5:
+                SponserFragment sponserFragment=new SponserFragment();
+                showFragment(sponserFragment);
+                break;
+            case 6:
+                // Todo - add rate code
+                break;
+            case 7:
+                // ToDo -  add rate code
+                break;
+        }
     }
 
     private void showFragment(Fragment fragment) {

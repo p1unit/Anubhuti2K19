@@ -14,9 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anubhuti.knit.Adapter.TeamviewAdapter;
+import com.anubhuti.knit.Migration.FireBaseData;
 import com.anubhuti.knit.Model.TeamDetail;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Response.TeamResponse;
+import com.anubhuti.knit.Utils.ApplicationContextProvider;
 import com.anubhuti.knit.Utils.Config;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,48 +42,42 @@ public class TeamFragment extends Fragment {
     View view;
     RecyclerView teamrecyclerview;
     TeamviewAdapter teamviewAdapter;
+    private FireBaseData fireBaseData;
 
 
-    public static TeamFragment createFor(String text) {
-        TeamFragment fragment = new TeamFragment();
-        Bundle args = new Bundle();
-        args.putString(EXTRA_TEXT, text);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static TeamFragment createFor(String text) {
+//        TeamFragment fragment = new TeamFragment();
+//        Bundle args = new Bundle();
+//        args.putString(EXTRA_TEXT, text);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_team, container, false);
+
         teamrecyclerview= (RecyclerView)view.findViewById(R.id.team_recyclerview);
         teamrecyclerview.setHasFixedSize(true);
         mDatabase = FirebaseDatabase.getInstance().getReference("TeamDetails");
+//        mDatabase.
+        fireBaseData = new FireBaseData();
 
-        getFirebaseData();
+        getStoredData();   // getting stored Data
+        getFirebaseData(); // getting online Data
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         teamrecyclerview.setLayoutManager(layoutManager);
-       // teamviewAdapter = new TeamviewAdapter(list);
-     //   teamrecyclerview.setAdapter(teamviewAdapter);
-       // Toast.makeText(getActivity(),"fsnjns",Toast.LENGTH_LONG).show();
+
 
         return view;
-
-
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 //        final String text = getArguments().getString(EXTRA_TEXT);
-      //  mDatabase = FirebaseDatabase.getInstance().getReference("TeamDetails");
 
-//        TextView textView = view.findViewById(R.id.text);
-//        textView.setText("hh");
-//        textView.setOnClickListener(new View.OnClickListener() {
-//            @Override public void onClick(View v) {
-//                Toast.makeText(v.getContext(), "hh", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
     }
 
@@ -103,10 +99,11 @@ public class TeamFragment extends Fragment {
                     list.add(teamDetail);
    //                 Log.d("team",)
 
-
                 }
-                TeamviewAdapter teamviewAdapter = new TeamviewAdapter(list);
-                teamrecyclerview.setAdapter(teamviewAdapter);
+                teamResponse.setTeamDetails(list);
+                fireBaseData.setTeamData(teamResponse);
+                showData(list);
+
 
             }
 
@@ -121,10 +118,18 @@ public class TeamFragment extends Fragment {
         });
     }
 
-    private void showData() {
+    private void getStoredData(){
+        try {
+            List<TeamDetail> teamList = fireBaseData.getTaemData();
+            showData(teamList);
+        }catch (NullPointerException ignored){
 
-        teamResponse.setTeamDetails(list);
-        for(int i=0;i<list.size();i++)
-            Config.toastShort(getContext(),list.get(i).getName());
+        }
+    }
+
+    private void showData(List<TeamDetail> teamList) {
+
+        TeamviewAdapter teamviewAdapter = new TeamviewAdapter(teamList);
+        teamrecyclerview.setAdapter(teamviewAdapter);
     }
 }
