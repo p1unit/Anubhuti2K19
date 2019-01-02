@@ -41,7 +41,6 @@ public class TeamFragment extends Fragment {
     private TeamResponse teamResponse=new TeamResponse();
     View view;
     RecyclerView teamrecyclerview;
-    TeamviewAdapter teamviewAdapter;
     private FireBaseData fireBaseData;
 
 

@@ -17,6 +17,71 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="40dp" />
+        android:layout_height="20dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fb_icon"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:onClick="fbClick"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_facebook"
+            android:layout_gravity="center_horizontal"
+            />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".3">
+
+        </RelativeLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/insta_icon"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:onClick="instaClick"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_instagram" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".3">
+
+        </RelativeLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/youtube_icon"
+            android:layout_width="0dp"
+            android:onClick="youtubeClick"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_youtube" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".3">
+
+        </RelativeLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/anubhti_icon"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:onClick="anubhutiClick"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/anubhti_icon" />
+
+    </LinearLayout>
 
 </LinearLayout>

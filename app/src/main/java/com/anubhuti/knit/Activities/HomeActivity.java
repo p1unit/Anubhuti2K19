@@ -1,6 +1,8 @@
 package com.anubhuti.knit.Activities;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.anubhuti.knit.Fragments.ContactUsFragment;
 import com.anubhuti.knit.Fragments.EventsFragment;
@@ -167,5 +170,25 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     @ColorInt
     private int color(@ColorRes int res) {
         return ContextCompat.getColor(this, res);
+    }
+
+    public void fbClick(View view) {
+
+        Config.toastShort(this,"FB");
+    }
+
+    public void instaClick(View view) {
+
+        Config.toastShort(this,"Insta");
+    }
+
+    public void youtubeClick(View view) {
+
+        Config.toastShort(this,"Youtube");
+    }
+
+    public void anubhutiClick(View view) {
+
+        Config.toastShort(this,"Anubhuti");
     }
 }
