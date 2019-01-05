@@ -7,4 +7,5 @@
     <color name="textColorPrimary">#000</color>
     <color name="textColorSecondary">#ffff66</color>
     <color name="main_color">#ff6600</color>
+    <color name="red">#f51b1b</color>
 </resources>
