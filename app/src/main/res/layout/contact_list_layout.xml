@@ -2,21 +2,24 @@
 <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="@dimen/top_margin"
-    android:padding="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
+
         android:layout_width="400dp"
-        android:layout_height="140dp">
+        android:layout_height="160dp">
 
         <android.support.v7.widget.CardView
+
+            android:layout_marginTop="@dimen/top_margin"
+            android:layout_marginBottom="@dimen/top_margin"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
             app:cardCornerRadius="@dimen/radius"
             android:layout_width="match_parent"
-            android:elevation="@dimen/radius"
+            android:elevation="7dp"
             app:cardPreventCornerOverlap="true"
             android:layout_height="match_parent">
 
@@ -31,7 +34,6 @@
                     android:id="@+id/name_cantact"
                     android:layout_gravity="center"
                     android:textSize="18sp"
-                    android:text="Puneet Kumar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -39,14 +41,13 @@
                     android:id="@+id/post_contact"
                     android:layout_gravity="center"
                     android:textSize="13sp"
-                    android:text="Puneet Kumar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <RelativeLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginEnd="45dp"
                     android:background="@color/red"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"/>
@@ -56,7 +57,6 @@
                     android:layout_gravity="center"
                     android:id="@+id/phone_no_contact"
                     android:drawableStart="@drawable/ic_tc_phone"
-                    android:text="9807391504"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -65,7 +65,6 @@
                     android:layout_gravity="center"
                     android:id="@+id/email_contact"
                     android:drawableStart="@drawable/ic_tc_mail"
-                    android:text="puneet16638@gmail.com"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -80,6 +79,8 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/email_image"
         android:layout_width="wrap_content"
+        android:elevation="10dp"
+        android:padding="5dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
@@ -87,6 +88,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/phone_image"
+        android:elevation="10dp"
+        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

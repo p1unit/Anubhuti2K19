@@ -2,9 +2,12 @@ package com.anubhuti.knit.Migration;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
+import com.anubhuti.knit.Model.ContactUs;
 import com.anubhuti.knit.Model.SponserDetail;
 import com.anubhuti.knit.Model.TeamDetail;
+import com.anubhuti.knit.Response.ContactUsResponse;
 import com.anubhuti.knit.Response.SponserResponse;
 import com.anubhuti.knit.Response.TeamResponse;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
@@ -46,5 +49,21 @@ public class FireBaseData {
         String str=sharedPreferences.getString("sponserDetails","");
         SponserResponse response=gson.fromJson(str,SponserResponse.class);
         return (ArrayList<SponserDetail>) response.getSponserDetail();
+    }
+
+    public void setContactUsData(ContactUsResponse response){
+
+        Gson gson=new Gson();
+        String str=gson.toJson(response);
+        sharedPreferences.edit().putString("conatctUsdetails",str).apply();
+    }
+
+    public List<ContactUs> getContactUsData() {
+
+
+        Gson gson=new Gson();
+        String str=sharedPreferences.getString("conatctUsdetails","");
+        ContactUsResponse response=gson.fromJson(str,ContactUsResponse.class);
+        return response.getContactUs();
     }
 }

@@ -40,7 +40,7 @@ public class ContactUsAdapter extends RecyclerView.Adapter<ContactUsAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return lis.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
