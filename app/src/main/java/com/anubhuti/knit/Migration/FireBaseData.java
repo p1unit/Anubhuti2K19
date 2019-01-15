@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.anubhuti.knit.Model.ContactUs;
+import com.anubhuti.knit.Model.EventCatogry;
 import com.anubhuti.knit.Model.SponserDetail;
 import com.anubhuti.knit.Model.TeamDetail;
 import com.anubhuti.knit.Response.ContactUsResponse;
+import com.anubhuti.knit.Response.EventCategoryResponse;
 import com.anubhuti.knit.Response.SponserResponse;
 import com.anubhuti.knit.Response.TeamResponse;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
@@ -65,5 +67,20 @@ public class FireBaseData {
         String str=sharedPreferences.getString("conatctUsdetails","");
         ContactUsResponse response=gson.fromJson(str,ContactUsResponse.class);
         return response.getContactUs();
+    }
+
+    public void setCategoryData(EventCategoryResponse response) {
+
+        Gson gson=new Gson();
+        String str=gson.toJson(response);
+        sharedPreferences.edit().putString("eventCategory",str).apply();
+    }
+
+    public List<EventCatogry> getCategoryData() {
+
+        Gson gson=new Gson();
+        String str=sharedPreferences.getString("eventCategory","");
+        EventCategoryResponse response=gson.fromJson(str,EventCategoryResponse.class);
+        return response.getEventCatogry();
     }
 }
