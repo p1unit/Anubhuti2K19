@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.anubhuti.knit.Listener.ContactListener;
 import com.anubhuti.knit.Model.ContactUs;
 import com.anubhuti.knit.R;
 
@@ -16,9 +17,11 @@ import java.util.List;
 public class ContactUsAdapter extends RecyclerView.Adapter<ContactUsAdapter.MyViewHolder> {
 
     List<ContactUs> lis;
+    ContactListener listener;
 
-    public ContactUsAdapter(List<ContactUs> lis) {
+    public ContactUsAdapter(List<ContactUs> lis,ContactListener listener) {
         this.lis = lis;
+        this.listener=listener;
     }
 
     @NonNull
@@ -68,22 +71,23 @@ public class ContactUsAdapter extends RecyclerView.Adapter<ContactUsAdapter.MyVi
 
             switch (v.getId()){
                 case R.id.email_image:
-                    handelEmailClick();
+                    handelEmailClick(getAdapterPosition());
                     break;
                 case R.id.phone_image:
-                    handelPhoneClick();
+                    handelPhoneClick(getAdapterPosition());
                     break;
             }
 
         }
 
-        private void handelPhoneClick() {
-            // ToDo phone Click Handel
+        private void handelPhoneClick(int adapterPosition) {
+
+            listener.phoneClicked(lis.get(adapterPosition).getPhone());
         }
 
-        private void handelEmailClick() {
+        private void handelEmailClick(int adapterPosition) {
 
-            // ToDo email Click handel
+            listener.mailClicked(lis.get(adapterPosition).getEmail());
         }
     }
 }

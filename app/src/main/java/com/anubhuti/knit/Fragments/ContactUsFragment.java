@@ -1,6 +1,9 @@
 package com.anubhuti.knit.Fragments;
 
 
+import android.Manifest;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,21 +16,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.anubhuti.knit.Adapter.ContactUsAdapter;
+import com.anubhuti.knit.Listener.ContactListener;
 import com.anubhuti.knit.Migration.FireBaseData;
 import com.anubhuti.knit.Model.ContactUs;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Response.ContactUsResponse;
+import com.anubhuti.knit.Utils.ApplicationContextProvider;
+import com.anubhuti.knit.Utils.Config;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ContactUsFragment extends Fragment {
+public class ContactUsFragment extends Fragment implements ContactListener {
 
     private DatabaseReference databaseReference;
     private List<ContactUs> list=new ArrayList<>();
@@ -35,6 +43,8 @@ public class ContactUsFragment extends Fragment {
     RecyclerView  recyclerView;
     private ContactUsAdapter adapter;
     private FireBaseData fireBaseData;
+    private String person_info="";
+    boolean isPhone=true;
 
 
     public ContactUsFragment() {
@@ -111,8 +121,72 @@ public class ContactUsFragment extends Fragment {
     private void showData(List<ContactUs> list2) {
 
         Log.e("lisiht",String.valueOf(list2.size()));
-        adapter=new ContactUsAdapter(list2);
+        adapter=new ContactUsAdapter(list2,this);
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void phoneClicked(String s) {
+
+        isPhone=true;
+        person_info=s;
+        askPermission();
+    }
+
+    @Override
+    public void mailClicked(String s) {
+
+        isPhone=false;
+        person_info=s;
+        askPermission();
+    }
+
+
+    private void askPermission() {
+
+        TedPermission.with(ApplicationContextProvider.getContext())
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("If you reject permission,you can not use this feature\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setPermissions(Manifest.permission.CALL_PHONE)
+                .check();
+    }
+
+    PermissionListener permissionlistener = new PermissionListener() {
+        @Override
+        public void onPermissionGranted() {
+
+            if(isPhone)
+                call();
+            else
+                mail();
+        }
+
+        @Override
+        public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+
+            Config.toastShort(ApplicationContextProvider.getContext(), Config.PERMISSION_REQUEST);
+        }
+
+
+    };
+
+    private void call(){
+        String s=person_info;
+        String ss="tel:"+ s;
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse(ss));
+        startActivity(intent);
+    }
+
+    private void mail(){
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        String s=person_info;
+        String ss="mailto:"+ s +"?subject=" + "" + "&body=" + "";
+        Uri data = Uri.parse(ss);
+        intent.setData(data);
+        startActivity(intent);
+    }
+
 
 }

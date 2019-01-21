@@ -5,9 +5,15 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
+    <ImageView
+        android:src="@drawable/anubhuti_text"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp" />
+
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="90dp" />
+        android:layout_height="10dp" />
 
 
     <android.support.v7.widget.RecyclerView
