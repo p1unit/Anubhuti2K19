@@ -6,20 +6,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.anubhuti.knit.Listener.CategoryListner;
 import com.anubhuti.knit.Model.EventCatogry;
 import com.anubhuti.knit.R;
+import com.anubhuti.knit.Utils.ApplicationContextProvider;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
 public class CategoryAdapter extends  RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
 
-
+    CategoryListner listner;
     List<EventCatogry> list;
 
-    public CategoryAdapter(List<EventCatogry> list) {
+    public CategoryAdapter(CategoryListner listner,List<EventCatogry> list)
+    {
+        this.listner=listner;
         this.list = list;
     }
 
@@ -46,13 +53,13 @@ public class CategoryAdapter extends  RecyclerView.Adapter<CategoryAdapter.MyVie
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        RelativeLayout relativeLayout;
+        ImageView bgImg;
         TextView event_name;
 
         MyViewHolder(View itemView) {
             super(itemView);
 
-            relativeLayout=itemView.findViewById(R.id.event_background);
+            bgImg=itemView.findViewById(R.id.background_image);
             event_name=itemView.findViewById(R.id.event_name);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -65,12 +72,17 @@ public class CategoryAdapter extends  RecyclerView.Adapter<CategoryAdapter.MyVie
 
         private void cardClicked(int adapterPosition) {
 
-            // ToDo handel click
+            listner.callId(list.get(adapterPosition).getId());
         }
 
         public void setBackGround(String imageUrl) {
 
-            // Todo setBAckground
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.placeholder(R.drawable.temp);
+            requestOptions.error(R.drawable.temp);
+
+            Glide.with(ApplicationContextProvider.getContext()).load(imageUrl)
+                    .apply(requestOptions).thumbnail(1.0f).into(bgImg);
         }
     }
 }

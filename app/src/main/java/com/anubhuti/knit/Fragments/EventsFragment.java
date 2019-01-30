@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.anubhuti.knit.Adapter.CategoryAdapter;
+import com.anubhuti.knit.Listener.CategoryListner;
 import com.anubhuti.knit.Migration.FireBaseData;
 import com.anubhuti.knit.Model.EventCatogry;
 import com.anubhuti.knit.R;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class EventsFragment extends Fragment {
+public class EventsFragment extends Fragment implements CategoryListner {
 
     private DatabaseReference mDatabase;
     private List<EventCatogry> list=new ArrayList<>();
@@ -117,7 +118,13 @@ public class EventsFragment extends Fragment {
         Log.e("list3",list2.get(0).getId()+" "+list2.get(1).getId());
 
 
-        CategoryAdapter adapter = new CategoryAdapter(list2);
+        CategoryAdapter adapter = new CategoryAdapter(this,list2);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void callId(String str) {
+
+
     }
 }

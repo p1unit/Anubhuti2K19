@@ -4,4 +4,5 @@
     <dimen name="left_margin">10dp</dimen>
     <dimen name="right_margin">10dp</dimen>
     <dimen name="top_margin">10dp</dimen>
+    <dimen name="event_row_height">200dp</dimen>
 </resources>

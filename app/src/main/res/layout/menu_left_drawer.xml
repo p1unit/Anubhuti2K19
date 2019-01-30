@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@drawable/background"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ImageView
         android:src="@drawable/anubhuti_text"
@@ -25,9 +30,13 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp" />
 
+    </LinearLayout>
+
     <LinearLayout
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="5"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -98,4 +107,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

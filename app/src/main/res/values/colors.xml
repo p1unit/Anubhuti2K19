@@ -8,4 +8,6 @@
     <color name="textColorSecondary">#ffff66</color>
     <color name="main_color">#ff6600</color>
     <color name="red">#f51b1b</color>
+    <color name="white">#fff</color>
+    <color name="black">#000000</color>
 </resources>

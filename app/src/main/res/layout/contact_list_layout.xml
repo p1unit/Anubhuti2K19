@@ -33,6 +33,7 @@
                 <TextView
                     android:id="@+id/name_cantact"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -41,6 +42,7 @@
                     android:id="@+id/post_contact"
                     android:layout_gravity="center"
                     android:textSize="13sp"
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -55,6 +57,7 @@
                 <TextView
                     android:layout_marginTop="@dimen/top_margin"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
                     android:id="@+id/phone_no_contact"
                     android:drawableStart="@drawable/ic_tc_phone"
                     android:layout_width="wrap_content"
@@ -64,6 +67,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_gravity="center"
                     android:id="@+id/email_contact"
+                    android:textColor="@color/black"
                     android:drawableStart="@drawable/ic_tc_mail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
