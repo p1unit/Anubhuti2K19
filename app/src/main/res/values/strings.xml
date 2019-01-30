@@ -25,5 +25,6 @@
 		Aenean ullamcorper dolor non condimentum congue. Aenean mauris nunc, pellentesque at placerat vitae,
 		aliquet quis orci. Curabitur maximus augue ut bibendum sagittis.
 	</string>
+    <string name="MainDomain">http://13.233.60.117:8080/</string>
 
 </resources>

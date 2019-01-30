@@ -37,4 +37,7 @@ public class Config {
     public static void toastLong(Context ctx,String msg){
         Toast.makeText(ctx,msg,Toast.LENGTH_LONG).show();
     }
+    public static void logd(String tag, String message){
+        Log.d(tag, message);
+    }
 }
