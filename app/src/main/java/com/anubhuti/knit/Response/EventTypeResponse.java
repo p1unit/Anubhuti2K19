@@ -12,9 +12,6 @@ public class EventTypeResponse implements Serializable {
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("eventType")
-    @Expose
-    private String eventType;
     @SerializedName("allData")
     @Expose
     private List<EventTypeModel> allData = null;
@@ -27,14 +24,6 @@ public class EventTypeResponse implements Serializable {
         this.id = id;
     }
 
-    public String getEventType() {
-        return eventType;
-    }
-
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
-
     public List<EventTypeModel> getAllData() {
         return allData;
     }
@@ -43,9 +32,8 @@ public class EventTypeResponse implements Serializable {
         this.allData = allData;
     }
 
-    public EventTypeResponse(String id, String eventType, List<EventTypeModel> allData) {
+    public EventTypeResponse(String id, List<EventTypeModel> allData) {
         this.id = id;
-        this.eventType = eventType;
         this.allData = allData;
     }
 

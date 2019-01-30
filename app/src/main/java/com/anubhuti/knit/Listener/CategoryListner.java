@@ -2,6 +2,6 @@ package com.anubhuti.knit.Listener;
 
 public interface CategoryListner {
 
-    void callId(String str);
+    void callId(String str,String name);
 
 }

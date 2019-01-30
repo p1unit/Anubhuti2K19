@@ -1,6 +1,7 @@
 package com.anubhuti.knit.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,12 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.anubhuti.knit.Activities.EventListActivity;
 import com.anubhuti.knit.Adapter.CategoryAdapter;
+import com.anubhuti.knit.Interfaces.EventListInterface;
 import com.anubhuti.knit.Listener.CategoryListner;
 import com.anubhuti.knit.Migration.FireBaseData;
 import com.anubhuti.knit.Model.EventCatogry;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Response.EventCategoryResponse;
+import com.anubhuti.knit.Response.EventTypeResponse;
+import com.anubhuti.knit.Services.EventListService;
+import com.anubhuti.knit.Utils.ApplicationContextProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,13 +34,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class EventsFragment extends Fragment implements CategoryListner {
+public class EventsFragment extends Fragment implements CategoryListner,EventListInterface {
 
     private DatabaseReference mDatabase;
     private List<EventCatogry> list=new ArrayList<>();
     private EventCategoryResponse response=new EventCategoryResponse();
     private RecyclerView recyclerView;
     private FireBaseData fireBaseData;
+    private String name="";
 
     public EventsFragment() {
         // Required empty public constructor
@@ -123,8 +130,20 @@ public class EventsFragment extends Fragment implements CategoryListner {
     }
 
     @Override
-    public void callId(String str) {
+    public void callId(String str,String name) {
 
+        this.name=name;
+        EventListService eventListService=new EventListService(this);
+        eventListService.getEventList(str);
+
+    }
+
+    @Override
+    public void setEventList(EventTypeResponse response) {
+        Intent intent=new Intent(ApplicationContextProvider.getContext(),EventListActivity.class);
+        intent.putExtra("listEvent",response);
+        intent.putExtra("name",name);
+        startActivity(intent);
 
     }
 }

@@ -72,7 +72,7 @@ public class CategoryAdapter extends  RecyclerView.Adapter<CategoryAdapter.MyVie
 
         private void cardClicked(int adapterPosition) {
 
-            listner.callId(list.get(adapterPosition).getId());
+            listner.callId(list.get(adapterPosition).getId(),list.get(adapterPosition).getName());
         }
 
         public void setBackGround(String imageUrl) {
