@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
         private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
         private View mFab;
         private int mMaxScrollSize;
+        CollapsingToolbarLayout layout;
         private boolean mIsImageHidden;
       //  TextView descText;
         ImageView img;
@@ -37,6 +39,7 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
             setContentView(R.layout.activity_event_discription);
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.flexible_example_toolbar);
+            layout=findViewById(R.id.collapsing);
             img=this.findViewById(R.id.event_img);
             webView=this.findViewById(R.id.webview);
 
@@ -44,7 +47,7 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
             EventDescResponse response=(EventDescResponse) intent.getSerializableExtra("eventData");
 
             str=response.getDesc();
-            toolbar.setTitle(response.getName());
+            layout.setTitle(response.getName());
             webView.getSettings().setJavaScriptEnabled(true);
             webView.loadDataWithBaseURL("", str, "text/html", "UTF-8", "");
 ;
