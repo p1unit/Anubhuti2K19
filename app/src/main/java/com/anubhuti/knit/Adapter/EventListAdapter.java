@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.anubhuti.knit.Interfaces.Detail_RegisterInterface;
 import com.anubhuti.knit.Model.EventTypeModel;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
@@ -19,9 +20,11 @@ import java.util.List;
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyViewHolder> {
 
     List<EventTypeModel> list;
+    Detail_RegisterInterface anInterface;
 
-    public EventListAdapter(List<EventTypeModel> list) {
+    public EventListAdapter(Detail_RegisterInterface anInterface,List<EventTypeModel> list) {
         this.list = list;
+        this.anInterface=anInterface;
     }
 
     @NonNull
@@ -74,7 +77,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
             details.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getDetail();
+                    getDetail(getAdapterPosition());
                 }
             });
 
@@ -90,8 +93,9 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
         }
 
-        private void getDetail() {
+        private void getDetail(int adapterPosition) {
 
+            anInterface.detailEvent(list.get(adapterPosition).getDescId());
         }
     }
 }

@@ -7,14 +7,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.anubhuti.knit.Adapter.EventListAdapter;
+import com.anubhuti.knit.Interfaces.Detail_RegisterInterface;
 import com.anubhuti.knit.Model.EventTypeModel;
 import com.anubhuti.knit.R;
+import com.anubhuti.knit.Response.EventDescResponse;
 import com.anubhuti.knit.Response.EventTypeResponse;
+import com.anubhuti.knit.Services.EventListService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventListActivity extends AppCompatActivity {
+public class EventListActivity extends AppCompatActivity implements Detail_RegisterInterface {
 
     RecyclerView recyclerView;
 
@@ -35,8 +38,29 @@ public class EventListActivity extends AppCompatActivity {
 
         List<EventTypeModel> lis=obj.getAllData();
 
-        EventListAdapter eventListAdapter=new EventListAdapter(lis);
+        EventListAdapter eventListAdapter=new EventListAdapter(this,lis);
 
         recyclerView.setAdapter(eventListAdapter);
+    }
+
+    @Override
+    public void registerEvent() {
+
+    }
+
+    @Override
+    public void detailEvent(String id) {
+
+        EventListService eventListService=new EventListService(this);
+        eventListService.getEventDesd(id);
+
+    }
+
+    @Override
+    public void getEvent(EventDescResponse response) {
+
+        Intent intent=new Intent(this,EventDiscription.class);
+        intent.putExtra("eventData",response);
+        startActivity(intent);
     }
 }

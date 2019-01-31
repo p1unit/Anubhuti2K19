@@ -3,7 +3,9 @@ package com.anubhuti.knit.Services;
 import android.content.Context;
 import android.util.Log;
 
+import com.anubhuti.knit.Interfaces.Detail_RegisterInterface;
 import com.anubhuti.knit.Interfaces.EventListInterface;
+import com.anubhuti.knit.Response.EventDescResponse;
 import com.anubhuti.knit.Response.EventTypeResponse;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
 
@@ -17,9 +19,14 @@ import retrofit2.Response;
 public class EventListService implements Serializable {
 
 
-    ApiClient apiClient=new ApiClient();
-    Context  context=ApplicationContextProvider.getContext();
-    EventListInterface listInterface;
+    private ApiClient apiClient=new ApiClient();
+    private Context  context=ApplicationContextProvider.getContext();
+    private EventListInterface listInterface;
+    private Detail_RegisterInterface detail_registerInterface;
+
+    public EventListService(Detail_RegisterInterface detail_registerInterface) {
+        this.detail_registerInterface = detail_registerInterface;
+    }
 
     public EventListService(EventListInterface listInterface) {
         this.listInterface = listInterface;
@@ -50,6 +57,32 @@ public class EventListService implements Serializable {
             }
             @Override
             public void onFailure(Call<EventTypeResponse> call, Throwable t) {
+                Log.e("list Error","Failed");
+                apiClient.failureErrorAsync(context, t);
+            }
+        });
+    }
+
+    public void getEventDesd(String id) {
+
+        ApiService apiService = apiClient.createService(ApiService.class);
+        Call<EventDescResponse> call = apiService.getDesc(id);
+        call.enqueue(new Callback<EventDescResponse>() {
+            @Override
+            public void onResponse(Call<EventDescResponse> call, Response<EventDescResponse> response) {
+                if(response.isSuccessful() && response.body()!=null){
+                    detail_registerInterface.getEvent(response.body());
+                }else{
+                    apiClient.apiErrorAsync(context, response);
+                    try {
+                        Log.e("list Error", response.errorBody().string());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<EventDescResponse> call, Throwable t) {
                 Log.e("list Error","Failed");
                 apiClient.failureErrorAsync(context, t);
             }

@@ -10,34 +10,55 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anubhuti.knit.R;
+import com.anubhuti.knit.Response.EventDescResponse;
+import com.anubhuti.knit.Utils.ApplicationContextProvider;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 public class EventDiscription extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
         private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
         private View mFab;
         private int mMaxScrollSize;
         private boolean mIsImageHidden;
-        TextView descText;
+      //  TextView descText;
+        ImageView img;
+        WebView webView;
 
-        String str="<p>comprises of four different courses, offering you everything needed to become a JavaScript Pro! Through guidance from best instructors and tutors of the industry, we provide our specially curat</p><h2>Rules</h2><li>Aihih</li>	<li>Bjbb</li><li>Cknkn</li><h3>Judging Criteria</h>	<li>D</li>";
+        String str="";
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_event_discription);
 
-
-            descText=findViewById(R.id.desc_text);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                descText.setText(Html.fromHtml(str, Html.FROM_HTML_MODE_COMPACT));
-            } else {
-                descText.setText(Html.fromHtml(str));
-            }
-
             Toolbar toolbar = (Toolbar) findViewById(R.id.flexible_example_toolbar);
+            img=this.findViewById(R.id.event_img);
+            webView=this.findViewById(R.id.webview);
+
+            Intent intent=getIntent();
+            EventDescResponse response=(EventDescResponse) intent.getSerializableExtra("eventData");
+
+            str=response.getDesc();
+            toolbar.setTitle(response.getName());
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.loadDataWithBaseURL("", str, "text/html", "UTF-8", "");
+;
+
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.placeholder(R.drawable.temp);
+            requestOptions.error(R.drawable.temp);
+
+
+
+            Glide.with(ApplicationContextProvider.getContext()).load(response.getImageUrl())
+                    .apply(requestOptions).thumbnail(0.5f).into(img);
+
+
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     onBackPressed();
