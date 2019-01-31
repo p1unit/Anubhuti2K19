@@ -19,7 +19,7 @@
         android:scaleType="fitXY"
         android:id="@+id/lis_img"
         android:layout_width="290dp"
-        android:layout_height="160dp" />
+        android:layout_height="200dp" />
 
     </LinearLayout>
 

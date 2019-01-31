@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activities.EventListActivity">
+
+    <android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        app:theme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_height="wrap_content"
+        app:titleMarginStart="12dp"
+        app:contentInsetLeft="7dp"
+        app:contentInsetStart="7dp"
+        app:contentInsetRight="7dp"
+        app:contentInsetEnd="0dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:id="@+id/backbtn"
+            android:clickable="true"
+            android:padding="@dimen/appbar_padding_top"
+            android:focusable="true"
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/left_arrow"/>
+        <TextView
+            android:id="@+id/toolbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry" />
+
+    </android.support.v7.widget.Toolbar>
+</android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/event_list_recycler"
@@ -13,4 +49,4 @@
 
     </android.support.v7.widget.RecyclerView>
 
-</RelativeLayout>
+</LinearLayout>
