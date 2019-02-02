@@ -35,6 +35,8 @@
                     android:layout_gravity="center"
                     android:textColor="@color/black"
                     android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/noto_serif_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -42,6 +44,7 @@
                     android:id="@+id/post_contact"
                     android:layout_gravity="center"
                     android:textSize="13sp"
+                    android:fontFamily="@font/noto_serif"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -59,6 +62,7 @@
                     android:layout_gravity="center"
                     android:textColor="@color/black"
                     android:id="@+id/phone_no_contact"
+                    android:fontFamily="@font/noto_serif"
                     android:drawableStart="@drawable/ic_tc_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -67,6 +71,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_gravity="center"
                     android:id="@+id/email_contact"
+                    android:fontFamily="@font/noto_serif"
                     android:textColor="@color/black"
                     android:drawableStart="@drawable/ic_tc_mail"
                     android:layout_width="wrap_content"
