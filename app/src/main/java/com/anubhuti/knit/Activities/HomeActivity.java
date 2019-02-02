@@ -1,5 +1,6 @@
 package com.anubhuti.knit.Activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -24,6 +25,7 @@ import com.anubhuti.knit.Fragments.HomeFragment;
 import com.anubhuti.knit.Fragments.SponserFragment;
 import com.anubhuti.knit.Fragments.TeamFragment;
 import com.anubhuti.knit.R;
+import com.anubhuti.knit.Utils.ApplicationContextProvider;
 import com.anubhuti.knit.Utils.Config;
 import com.anubhuti.knit.menu.DrawerAdapter;
 import com.anubhuti.knit.menu.DrawerItem;
@@ -77,7 +79,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 createItemFor(POS_ENQUIRY),
                 createItemFor(POS_TEAM_DETAILS),
                 createItemFor(POS_SPONSER_DETAIL),
-                new SpaceItem(15),
+                new SpaceItem(10),
                 createItemFor(POS_SHARE_APP),
                 createItemFor(POS_RATE_US)));
         adapter.setListener(this);
@@ -88,6 +90,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         list.setAdapter(adapter);
 
         adapter.setSelected(POS_HOME);
+
     }
 
     @Override
@@ -122,11 +125,11 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 SponserFragment sponserFragment=new SponserFragment();
                 showFragment(sponserFragment);
                 break;
-            case 6:
-                // Todo - add rate code
-                break;
             case 7:
-                // ToDo -  add rate code
+                rateApp();
+                break;
+            case 8:
+                shareApp();
                 break;
         }
     }
@@ -174,21 +177,72 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
     public void fbClick(View view) {
 
-        Config.toastShort(this,"FB");
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/anubhutiknit/"));
+            startActivity(intent);
+        } catch(Exception e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/anubhutiknit/")));
+        }
     }
 
     public void instaClick(View view) {
 
-        Config.toastShort(this,"Insta");
+        Uri uri = Uri.parse("https://instagram.com/_u/anubhuti.knit?utm_source=ig_profile_share&igshid=1h2asc6dnqphz");
+        Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+        likeIng.setPackage("com.instagram.android");
+
+        try {
+            startActivity(likeIng);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://instagram.com/anubhuti.knit?utm_source=ig_profile_share&igshid=1h2asc6dnqphz")));
+        }
     }
 
     public void youtubeClick(View view) {
 
-        Config.toastShort(this,"Youtube");
+        Intent intent=null;
+        try {
+            intent =new Intent(Intent.ACTION_VIEW);
+            intent.setPackage("com.google.android.youtube");
+            intent.setData(Uri.parse("https://www.youtube.com/channel/UCcpPd0QLYTpzYoR6XvBtE1w"));
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://www.youtube.com/channel/UCcpPd0QLYTpzYoR6XvBtE1w"));
+            startActivity(intent);
+        }
     }
 
     public void anubhutiClick(View view) {
 
-        Config.toastShort(this,"Anubhuti");
+        String url = "https://anubhuti19.in/";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
+
+    private void rateApp(){
+
+
+        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            Config.toastShort(ApplicationContextProvider.getContext(), "Thanks for your Intrest :D");
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        }
+        catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
+    }
+
+    private void shareApp(){
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                "Hey check out this cool Anubhuti2K19 App at: https://play.google.com/store/apps/details?id=com.anubhuti.knit");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 }
