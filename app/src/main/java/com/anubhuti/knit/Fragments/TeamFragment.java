@@ -27,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -127,6 +129,13 @@ public class TeamFragment extends Fragment {
     }
 
     private void showData(List<TeamDetail> teamList) {
+
+        Collections.sort(teamList,new Comparator<TeamDetail>() {
+            @Override
+            public int compare(TeamDetail o1, TeamDetail o2) {
+                return Integer.parseInt(o1.getPriority())-Integer.parseInt(o2.getPriority());
+            }
+        });
 
         TeamviewAdapter teamviewAdapter = new TeamviewAdapter(teamList);
         teamrecyclerview.setAdapter(teamviewAdapter);

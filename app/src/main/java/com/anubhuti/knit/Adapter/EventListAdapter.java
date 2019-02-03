@@ -3,7 +3,9 @@ package com.anubhuti.knit.Adapter;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +49,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ApplicationContextProvider.getContext(),LinearLayoutManager.HORIZONTAL,false);
         holder.imgRecyler.setLayoutManager(layoutManager);
         holder.imgRecyler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+        SnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(holder.imgRecyler);
         ImgAdapter adapter=new ImgAdapter(str);
         holder.imgRecyler.setAdapter(adapter);
 
