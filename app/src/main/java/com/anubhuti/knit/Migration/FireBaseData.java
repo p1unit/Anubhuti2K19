@@ -6,10 +6,12 @@ import android.util.Log;
 
 import com.anubhuti.knit.Model.ContactUs;
 import com.anubhuti.knit.Model.EventCatogry;
+import com.anubhuti.knit.Model.PastFutureData;
 import com.anubhuti.knit.Model.SponserDetail;
 import com.anubhuti.knit.Model.TeamDetail;
 import com.anubhuti.knit.Response.ContactUsResponse;
 import com.anubhuti.knit.Response.EventCategoryResponse;
+import com.anubhuti.knit.Response.PastFutureResponse;
 import com.anubhuti.knit.Response.SponserResponse;
 import com.anubhuti.knit.Response.TeamResponse;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
@@ -82,5 +84,50 @@ public class FireBaseData {
         String str=sharedPreferences.getString("eventCategory","");
         EventCategoryResponse response=gson.fromJson(str,EventCategoryResponse.class);
         return response.getEventCatogry();
+    }
+
+    public void setGloriousPast(PastFutureResponse response2) {
+
+        Gson gson=new Gson();
+        String str=gson.toJson(response2);
+        sharedPreferences.edit().putString("gloriousPast",str).apply();
+    }
+
+    public void setAddress(PastFutureResponse response2) {
+
+        Gson gson=new Gson();
+        String str=gson.toJson(response2);
+        sharedPreferences.edit().putString("address",str).apply();
+    }
+
+    public void setUpcoming(PastFutureResponse response2) {
+
+        Gson gson=new Gson();
+        String str=gson.toJson(response2);
+        sharedPreferences.edit().putString("upcoming",str).apply();
+    }
+
+    public List<PastFutureData> getGloriousPast(){
+
+        Gson gson=new Gson();
+        String str=sharedPreferences.getString("gloriousPast","");
+        PastFutureResponse pastFutureResponse=gson.fromJson(str,PastFutureResponse.class);
+        return pastFutureResponse.getData();
+    }
+
+    public List<PastFutureData> getAddress(){
+
+        Gson gson=new Gson();
+        String str=sharedPreferences.getString("address","");
+        PastFutureResponse pastFutureResponse=gson.fromJson(str,PastFutureResponse.class);
+        return pastFutureResponse.getData();
+    }
+
+    public List<PastFutureData> getUpcoming(){
+
+        Gson gson=new Gson();
+        String str=sharedPreferences.getString("upcoming","");
+        PastFutureResponse pastFutureResponse=gson.fromJson(str,PastFutureResponse.class);
+        return pastFutureResponse.getData();
     }
 }

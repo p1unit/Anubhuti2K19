@@ -34,7 +34,7 @@ public class PastAndFutureAdapter extends RecyclerView.Adapter<PastAndFutureAdap
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
 
-        holder.name.setText(list.get(i%list.size()).getName());
+//        holder.name.setText(list.get(i%list.size()).getName());
         holder.setImg(list.get(i%list.size()).getImageUrl());
     }
 
@@ -46,13 +46,13 @@ public class PastAndFutureAdapter extends RecyclerView.Adapter<PastAndFutureAdap
     public class Holder extends RecyclerView.ViewHolder{
 
         ImageView img;
-        TextView name;
+//        TextView name;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
 
             img=itemView.findViewById(R.id.bc_image);
-            name=itemView.findViewById(R.id.some_name);
+//            name=itemView.findViewById(R.id.some_name);
         }
 
         public void setImg(String url){
