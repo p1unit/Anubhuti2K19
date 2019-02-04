@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardPreventCornerOverlap="true"
     app:cardElevation="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
     android:orientation="horizontal"
     app:cardCornerRadius="10dp"
-    android:layout_height="200dp">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -17,8 +19,8 @@
             android:layout_gravity="center_horizontal"
             android:scaleType="fitXY"
             android:id="@+id/bc_image"
-            android:layout_width="290dp"
-            android:layout_height="200dp" />
+            android:layout_width="310dp"
+            android:layout_height="220dp" />
 
 
     </RelativeLayout>

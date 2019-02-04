@@ -88,9 +88,8 @@ public class HomeFragment extends Fragment {
         snapHelper3.attachToRecyclerView(addressRecycler);
 
         setGloriousPast();
+        setAddressData();
     }
-
-
 
     private void getFirebaseData1() {
 
@@ -183,6 +182,59 @@ public class HomeFragment extends Fragment {
         PastAndFutureAdapter pastAndFutureAdapter=new PastAndFutureAdapter(list);
         pastRecycler.setAdapter(pastAndFutureAdapter);
         pastRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+    }
+
+
+
+    private void setAddressData() {
+        mDatabase3= FirebaseDatabase.getInstance().getReference("address");
+        getStoredData3();   // getting stored Data
+        getFirebaseData3();
+    }
+
+    private void getFirebaseData3() {
+
+        final List<PastFutureData> list=new ArrayList<>();
+
+        mDatabase3.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    PastFutureData data=postSnapshot.getValue(PastFutureData.class);
+                    list.add(data);
+
+                }
+                response3.setData(list);
+                fireBaseData.setAddress(response3);
+                showData3(list);
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.e("ErrorTAG", "loadPost:onCancelled", databaseError.toException());
+
+            }
+        });
+    }
+
+    private void getStoredData3() {
+        try {
+            List<PastFutureData> list = fireBaseData.getAddress();
+            showData3(list);
+        }catch (NullPointerException ignored){
+
+        }
+    }
+
+    private void showData3(List<PastFutureData> list) {
+
+        PastAndFutureAdapter pastAndFutureAdapter=new PastAndFutureAdapter(list);
+        addressRecycler.setAdapter(pastAndFutureAdapter);
+        addressRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
     }
 
 }
