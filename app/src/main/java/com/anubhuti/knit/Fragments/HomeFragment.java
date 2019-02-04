@@ -87,24 +87,6 @@ public class HomeFragment extends Fragment {
         snapHelper2.attachToRecyclerView(pastRecycler);
         snapHelper3.attachToRecyclerView(addressRecycler);
 
-        List<PastFutureData> lis=new ArrayList<>();
-        PastFutureData obj=new PastFutureData("Puneet","https://firebasestorage.googleapis.com/v0/b/anubhuti-14e39.appspot.com/o/dance%2FSOLO-DANCE%2Fimg1.jpg?alt=media&token=e01d96c3-5ff8-4535-afbb-56000558f823");
-
-        lis.add(obj);
-        lis.add(obj);
-        lis.add(obj);
-        lis.add(obj);
-        PastAndFutureAdapter pastAndFutureAdapter=new PastAndFutureAdapter(lis);
-
-        upcomingRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
-        upcomingRecycler.setAdapter(pastAndFutureAdapter);
-
-        pastRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
-        pastRecycler.setAdapter(pastAndFutureAdapter);
-
-        addressRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
-        addressRecycler.setAdapter(pastAndFutureAdapter);
-
         setGloriousPast();
     }
 
@@ -200,6 +182,7 @@ public class HomeFragment extends Fragment {
 
         PastAndFutureAdapter pastAndFutureAdapter=new PastAndFutureAdapter(list);
         pastRecycler.setAdapter(pastAndFutureAdapter);
+        pastRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
     }
 
 }

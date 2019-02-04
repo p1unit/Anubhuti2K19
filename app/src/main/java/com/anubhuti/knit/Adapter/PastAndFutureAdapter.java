@@ -57,8 +57,8 @@ public class PastAndFutureAdapter extends RecyclerView.Adapter<PastAndFutureAdap
 
         public void setImg(String url){
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.placeholder(R.drawable.ic_user);
-            requestOptions.error(R.drawable.ic_user);
+            requestOptions.placeholder(R.drawable.temp);
+            requestOptions.error(R.drawable.temp);
 
 
             Glide.with(ApplicationContextProvider.getContext()).load(url)
