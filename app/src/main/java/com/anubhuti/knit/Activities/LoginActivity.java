@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Utils.Config;
+import com.anubhuti.knit.Utils.ViewProgress;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -78,7 +79,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         switch (view.getId()){
             case R.id.google_sign_in:
-                statGoogleLogin();
+//                ViewProgress viewProgress = new ViewProgress();
+//                viewProgress.showDialog();
+                 statGoogleLogin();
 
         }
 

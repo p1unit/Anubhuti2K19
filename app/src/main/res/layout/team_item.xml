@@ -26,11 +26,13 @@
         app:cardPreventCornerOverlap="true"
         app:cardCornerRadius="@dimen/radius"
         android:layout_width="match_parent"
-        android:layout_height="230dp">
+        android:layout_height="230dp"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/cardview_background_team">
 
             <TextView
                 android:id="@+id/team_name_textview"
