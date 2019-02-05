@@ -28,8 +28,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
+import cn.iwgang.countdownview.CountdownView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,6 +58,7 @@ public class HomeFragment extends Fragment {
     private PastFutureResponse response2;
     private PastFutureResponse response3;
     private FireBaseData fireBaseData;
+    private CountdownView mCvCountdownView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +78,8 @@ public class HomeFragment extends Fragment {
         response2=new PastFutureResponse();
         response3=new PastFutureResponse();
 
+        mCvCountdownView = view.findViewById(R.id.counter);
+
         upcomingRecycler.setHasFixedSize(true);
         pastRecycler.setHasFixedSize(true);
         addressRecycler.setHasFixedSize(true);
@@ -87,8 +97,27 @@ public class HomeFragment extends Fragment {
         snapHelper2.attachToRecyclerView(pastRecycler);
         snapHelper3.attachToRecyclerView(addressRecycler);
 
+        dateTimeStuff();
+
         setGloriousPast();
         setAddressData();
+    }
+
+    private void dateTimeStuff() {
+
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date firstDate = new Date();
+        Date secondDate = new Date(1550773800000L);
+
+        Log.e("Dates",firstDate+" -- "+secondDate);
+
+        long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
+        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+        Log.e("Time",diffInMillies+" -- "+diff);
+
+
+        mCvCountdownView.start(diffInMillies);
     }
 
     private void getFirebaseData1() {

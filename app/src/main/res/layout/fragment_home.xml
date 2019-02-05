@@ -30,6 +30,27 @@
 
     </android.support.v7.widget.CardView>
 
+        <cn.iwgang.countdownview.CountdownView
+            android:id="@+id/counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:isHideTimeBackground="true"
+            app:isShowDay="true"
+            android:layout_gravity="center"
+            app:isShowHour="true"
+            app:isShowMinute="true"
+            app:isShowSecond="true"
+            app:timeTextColor="#000000"
+            app:timeTextSize="22sp"
+            app:isTimeTextBold="true"
+            app:suffixGravity="bottom"
+            app:suffixTextColor="#000000"
+            app:suffixTextSize="12sp"
+            app:suffixDay="D"
+            app:suffixHour="H"
+            app:suffixMinute="M"
+            app:suffixSecond="S" />
+
 
         <android.support.v7.widget.CardView
             android:layout_marginTop="20dp"
