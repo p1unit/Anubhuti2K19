@@ -123,5 +123,11 @@ public class SponserFragment extends Fragment {
         sponserApapter=new SponserApapter(sponserList);
         recyclerView.setAdapter(sponserApapter);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().freeMemory();
+    }
 }
 

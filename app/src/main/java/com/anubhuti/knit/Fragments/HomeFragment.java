@@ -237,4 +237,10 @@ public class HomeFragment extends Fragment {
         addressRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().freeMemory();
+    }
+
 }

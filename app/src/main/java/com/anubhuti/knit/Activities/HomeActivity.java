@@ -18,6 +18,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.anubhuti.knit.Fragments.ContactUsFragment;
 import com.anubhuti.knit.Fragments.EventsFragment;
@@ -47,6 +48,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private static final int POS_SHARE_APP=6;
     private static final int POS_RATE_US=7;
 
+    private TextView toolBarTitle;
 
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -60,6 +62,9 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        toolBarTitle=this.findViewById(R.id.toolbar_title);
+        toolBarTitle.setText("Anubhuti2k19");
 
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
@@ -244,5 +249,11 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 "Hey check out this cool Anubhuti2K19 App at: https://play.google.com/store/apps/details?id=com.anubhuti.knit");
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().freeMemory();
     }
 }

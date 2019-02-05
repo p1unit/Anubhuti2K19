@@ -75,4 +75,10 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
         intent.putExtra("eventData",response);
         startActivity(intent);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().freeMemory();
+    }
 }

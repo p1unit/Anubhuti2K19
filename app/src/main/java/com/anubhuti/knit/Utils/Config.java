@@ -21,6 +21,7 @@ public class Config {
     public static final String SETUP_PROFILE_TOAST = "Setting up your profile. Be patient :)";
     public static final String PERMISSION_REQUEST = "Please grant necessary permission to continue :) ";
     public static final String SHARED_PREFERENCE_FIREBASE_DATA="FIREBASEDATA";
+    public static final String SHARED_PREFERENCE_USER_DATA="USERDATA";
 
     public static void logW(String TAG,String str){
         Log.w(TAG,str);

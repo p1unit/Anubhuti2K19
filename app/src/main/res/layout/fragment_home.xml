@@ -22,6 +22,12 @@
         app:cardCornerRadius="10dp"
         android:layout_height="240dp">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/intro"
+            android:layout_height="match_parent" />
+
     </android.support.v7.widget.CardView>
 
 
@@ -42,8 +48,53 @@
 
         </android.support.v7.widget.CardView>
 
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="-90"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="-90"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Glorious Past"
+                android:textColor="@color/black"
+                android:fontFamily="@font/noto_serif_bold"
+                android:layout_width="wrap_content"
+                android:textSize="20sp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="90"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="90"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <android.support.v7.widget.CardView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             app:cardPreventCornerOverlap="true"
             android:screenOrientation="portrait"
             android:layout_width="match_parent"
@@ -59,7 +110,53 @@
 
         </android.support.v7.widget.CardView>
 
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="-90"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="-90"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Agni Theme of the Fest"
+                android:textColor="@color/black"
+                android:fontFamily="@font/noto_serif_bold"
+                android:layout_width="wrap_content"
+                android:textSize="20sp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="90"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="90"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <android.support.v7.widget.CardView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             app:cardPreventCornerOverlap="true"
@@ -69,10 +166,62 @@
             app:cardCornerRadius="10dp"
             android:layout_height="240dp">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/theme"
+                android:layout_height="match_parent" />
+
         </android.support.v7.widget.CardView>
 
+        <LinearLayout
+            android:layout_marginTop="17dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="-90"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="-90"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Address"
+                android:textColor="@color/black"
+                android:fontFamily="@font/noto_serif_bold"
+                android:layout_width="wrap_content"
+                android:textSize="20sp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="90"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_fire_icon"
+                android:rotation="90"
+
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <android.support.v7.widget.CardView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             app:cardPreventCornerOverlap="true"
             android:screenOrientation="portrait"
             android:layout_width="match_parent"

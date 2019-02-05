@@ -99,4 +99,10 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
         public static void start(Context c) {
             c.startActivity(new Intent(c, EventDiscription.class));
         }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().freeMemory();
+    }
 }

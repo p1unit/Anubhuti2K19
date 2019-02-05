@@ -188,5 +188,11 @@ public class ContactUsFragment extends Fragment implements ContactListener {
         startActivity(intent);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().freeMemory();
+    }
+
 
 }

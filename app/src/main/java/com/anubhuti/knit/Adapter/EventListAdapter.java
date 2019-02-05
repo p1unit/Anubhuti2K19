@@ -50,6 +50,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         holder.imgRecyler.setLayoutManager(layoutManager);
         holder.imgRecyler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
         SnapHelper snapHelper = new PagerSnapHelper();
+        holder.imgRecyler.setOnFlingListener(null);
         snapHelper.attachToRecyclerView(holder.imgRecyler);
         ImgAdapter adapter=new ImgAdapter(str);
         holder.imgRecyler.setAdapter(adapter);

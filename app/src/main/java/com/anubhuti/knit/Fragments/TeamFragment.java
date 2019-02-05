@@ -140,4 +140,10 @@ public class TeamFragment extends Fragment {
         TeamviewAdapter teamviewAdapter = new TeamviewAdapter(teamList);
         teamrecyclerview.setAdapter(teamviewAdapter);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().freeMemory();
+    }
 }

@@ -7,5 +7,7 @@
     <string name="facebook_app_id">210317943218954</string>
     <string name="fb_login_protocol_scheme">fb210317943218954</string>
     <string name="MainDomain">http://13.233.60.117:8080/</string>
+    <string name="google_text">GOOGLE</string>
+    <string name="facebook_text">FACEBOOK</string>
 
 </resources>

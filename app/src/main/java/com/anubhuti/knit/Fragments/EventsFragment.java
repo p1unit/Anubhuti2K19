@@ -146,4 +146,10 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
         startActivity(intent);
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().freeMemory();
+    }
 }
