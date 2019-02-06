@@ -29,6 +29,7 @@
         android:layout_height="230dp">
 
         <RelativeLayout
+            android:background="@drawable/background_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -40,7 +41,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="100dp"
                 android:fontFamily="@font/noto_serif_bold"
-                android:text="Athrva Upadhya"
+                android:text="Puneet Kumar"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />

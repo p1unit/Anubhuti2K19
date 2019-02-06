@@ -2,6 +2,7 @@ package com.anubhuti.knit.Fragments;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class ContactUsFragment extends Fragment implements ContactListener {
     private FireBaseData fireBaseData;
     private String person_info="";
     boolean isPhone=true;
+    private ProgressDialog pd;
 
 
     public ContactUsFragment() {
@@ -64,6 +66,11 @@ public class ContactUsFragment extends Fragment implements ContactListener {
         recyclerView=(RecyclerView)view.findViewById(R.id.contact_recycler);
         recyclerView.setHasFixedSize(true);
         databaseReference=FirebaseDatabase.getInstance().getReference("ContactUs");
+
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
 
         fireBaseData =new FireBaseData();
         response=new ContactUsResponse();
@@ -123,6 +130,7 @@ public class ContactUsFragment extends Fragment implements ContactListener {
         Log.e("lisiht",String.valueOf(list2.size()));
         adapter=new ContactUsAdapter(list2,this);
         recyclerView.setAdapter(adapter);
+        pd.dismiss();
     }
 
     @Override

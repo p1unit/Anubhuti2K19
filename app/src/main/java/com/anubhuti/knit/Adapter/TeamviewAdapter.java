@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.anubhuti.knit.Interfaces.TeamInterface;
 import com.anubhuti.knit.Model.TeamDetail;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
@@ -24,19 +25,30 @@ public class TeamviewAdapter extends RecyclerView.Adapter<TeamviewAdapter.MyView
 
 
     List<TeamDetail>list=new ArrayList<>();
+    TeamInterface anInterface;
 
-    public TeamviewAdapter(List<TeamDetail> list) {
+    public TeamviewAdapter(List<TeamDetail> list, TeamInterface anInterface) {
         this.list = list;
+        this.anInterface = anInterface;
     }
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name, post;
         ImageView profile;
+        ImageView phone,email,fb;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = (TextView)itemView.findViewById(R.id.team_name_textview);
             post = (TextView)itemView.findViewById(R.id.team_post_textview);
             profile=(ImageView)itemView.findViewById(R.id.team_profile_image);
+            phone=itemView.findViewById(R.id.team_phone);
+            email=itemView.findViewById(R.id.team_email);
+            fb=itemView.findViewById(R.id.team_fb);
+
+            phone.setOnClickListener(this);
+            profile.setOnClickListener(this);
+            fb.setOnClickListener(this);
         }
 
         public void setImage(String url){
@@ -47,6 +59,35 @@ public class TeamviewAdapter extends RecyclerView.Adapter<TeamviewAdapter.MyView
 
             Glide.with(ApplicationContextProvider.getContext()).load(url)
                     .apply(requestOptions).thumbnail(0.5f).into(profile);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()){
+                case R.id.team_email:
+                    emailClick(getAdapterPosition());
+                    break;
+                case R.id.team_fb:
+                    fbClick(getAdapterPosition());
+                    break;
+                case R.id.team_phone:
+                    phoneClick(getAdapterPosition());
+                    break;
+            }
+        }
+
+        private void phoneClick(int adapterPosition) {
+
+            anInterface.phoneClick(list.get(adapterPosition).getMobileNo());
+        }
+
+        private void fbClick(int adapterPosition) {
+            anInterface.fbClick(list.get(adapterPosition).getFblink());
+        }
+
+        private void emailClick(int adapterPosition) {
+            anInterface.emailClick(list.get(adapterPosition).getEmailId());
         }
     }
 

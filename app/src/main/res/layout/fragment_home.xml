@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background_home"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent"
@@ -51,23 +52,15 @@
             app:suffixMinute="M"
             app:suffixSecond="S" />
 
-
-        <android.support.v7.widget.CardView
-            android:layout_marginTop="20dp"
-            app:cardPreventCornerOverlap="true"
-            android:screenOrientation="portrait"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <android.support.v7.widget.RecyclerView
+
+                android:layout_marginTop="10dp"
                 android:id="@+id/upcoming_recycler"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             </android.support.v7.widget.RecyclerView>
-
-        </android.support.v7.widget.CardView>
 
 
         <LinearLayout
@@ -114,22 +107,14 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <android.support.v7.widget.CardView
-            android:layout_marginTop="10dp"
-            app:cardPreventCornerOverlap="true"
-            android:screenOrientation="portrait"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="10dp"
                 android:id="@+id/past_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
             </android.support.v7.widget.RecyclerView>
-
-        </android.support.v7.widget.CardView>
 
 
         <LinearLayout
@@ -240,24 +225,15 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <android.support.v7.widget.CardView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            app:cardPreventCornerOverlap="true"
-            android:screenOrientation="portrait"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/address_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
             </android.support.v7.widget.RecyclerView>
-
-        </android.support.v7.widget.CardView>
-
 
 
     </LinearLayout>

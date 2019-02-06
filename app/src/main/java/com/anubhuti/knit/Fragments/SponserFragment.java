@@ -1,6 +1,7 @@
 package com.anubhuti.knit.Fragments;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -40,6 +41,7 @@ public class SponserFragment extends Fragment {
     RecyclerView recyclerView;
     SponserApapter sponserApapter;
     private FireBaseData  fireBaseData;
+    private ProgressDialog pd;
 
 
     public SponserFragment() {
@@ -60,6 +62,11 @@ public class SponserFragment extends Fragment {
         recyclerView=(RecyclerView)view.findViewById(R.id.sponser_recycler);
         recyclerView.setHasFixedSize(true);
         mDatabase=FirebaseDatabase.getInstance().getReference("SponserDetail");
+
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
 
         fireBaseData=new FireBaseData();
 
@@ -122,6 +129,7 @@ public class SponserFragment extends Fragment {
 
         sponserApapter=new SponserApapter(sponserList);
         recyclerView.setAdapter(sponserApapter);
+        pd.dismiss();
     }
 
     @Override

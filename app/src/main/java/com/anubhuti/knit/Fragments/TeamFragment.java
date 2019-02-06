@@ -1,6 +1,10 @@
 package com.anubhuti.knit.Fragments;
 
 
+import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anubhuti.knit.Adapter.TeamviewAdapter;
+import com.anubhuti.knit.Interfaces.TeamInterface;
 import com.anubhuti.knit.Migration.FireBaseData;
 import com.anubhuti.knit.Model.TeamDetail;
 import com.anubhuti.knit.R;
@@ -25,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +42,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeamFragment extends Fragment {
+public class TeamFragment extends Fragment implements TeamInterface {
 
     private static final String EXTRA_TEXT = "text";
     private DatabaseReference mDatabase;
@@ -44,6 +51,9 @@ public class TeamFragment extends Fragment {
     View view;
     RecyclerView teamrecyclerview;
     private FireBaseData fireBaseData;
+    private String person_info="";
+
+    private ProgressDialog pd;
 
 
 //    public static TeamFragment createFor(String text) {
@@ -70,6 +80,10 @@ public class TeamFragment extends Fragment {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         teamrecyclerview.setLayoutManager(layoutManager);
+
+        pd=new ProgressDialog(getActivity());
+        pd.setCancelable(false);
+        pd.show();
 
 
         return view;
@@ -137,13 +151,75 @@ public class TeamFragment extends Fragment {
             }
         });
 
-        TeamviewAdapter teamviewAdapter = new TeamviewAdapter(teamList);
+        TeamviewAdapter teamviewAdapter = new TeamviewAdapter(teamList,this);
         teamrecyclerview.setAdapter(teamviewAdapter);
+
+        pd.dismiss();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Runtime.getRuntime().freeMemory();
+    }
+
+    @Override
+    public void fbClick(String url) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/anubhutiknit/"));
+            startActivity(intent);
+        } catch(Exception e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/anubhutiknit/")));
+        }
+    }
+
+    @Override
+    public void phoneClick(String number) {
+
+        person_info=number;
+        askPermission();
+    }
+
+    private void askPermission() {
+
+        TedPermission.with(ApplicationContextProvider.getContext())
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("If you reject permission,you can not use this feature\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setPermissions(Manifest.permission.CALL_PHONE)
+                .check();
+    }
+
+    PermissionListener permissionlistener = new PermissionListener() {
+        @Override
+        public void onPermissionGranted() {
+
+            call();
+        }
+
+        @Override
+        public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+
+            Config.toastShort(ApplicationContextProvider.getContext(), Config.PERMISSION_REQUEST);
+        }
+
+
+    };
+
+    private void call(){
+        String s=person_info;
+        String ss="tel:"+ s;
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse(ss));
+        startActivity(intent);
+    }
+
+    @Override
+    public void emailClick(String email) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        String s=email;
+        String ss="mailto:"+ s +"?subject=" + "" + "&body=" + "";
+        Uri data = Uri.parse(ss);
+        intent.setData(data);
+        startActivity(intent);
     }
 }

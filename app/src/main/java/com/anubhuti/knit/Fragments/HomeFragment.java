@@ -1,6 +1,8 @@
 package com.anubhuti.knit.Fragments;
 
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import cn.iwgang.countdownview.CountdownView;
@@ -59,11 +63,14 @@ public class HomeFragment extends Fragment {
     private PastFutureResponse response3;
     private FireBaseData fireBaseData;
     private CountdownView mCvCountdownView;
+    private int num=2;
+    private ProgressDialog pd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        num=2;
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -77,6 +84,13 @@ public class HomeFragment extends Fragment {
         response1=new PastFutureResponse();
         response2=new PastFutureResponse();
         response3=new PastFutureResponse();
+
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
+
+        num=2;
 
         mCvCountdownView = view.findViewById(R.id.counter);
 
@@ -152,13 +166,15 @@ public class HomeFragment extends Fragment {
     private void getStoredData1() {
         try {
             List<PastFutureData> list = fireBaseData.getUpcoming();
-            showData2(list);
+            showData1(list);
         }catch (NullPointerException ignored){
 
         }
     }
 
     private void showData1(List<PastFutureData> list) {
+
+        num-=1;
     }
 
     private void setGloriousPast() {
@@ -183,7 +199,8 @@ public class HomeFragment extends Fragment {
                 }
                 response2.setData(list);
                 fireBaseData.setGloriousPast(response2);
-                showData2(list);
+                if(num!=0)
+                    showData2(list);
 
 
             }
@@ -211,6 +228,14 @@ public class HomeFragment extends Fragment {
         PastAndFutureAdapter pastAndFutureAdapter=new PastAndFutureAdapter(list);
         pastRecycler.setAdapter(pastAndFutureAdapter);
         pastRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new ScrollTask(pastAndFutureAdapter,pastRecycler), 2000, 5000);
+
+        num-=1;
+        if(num==0)
+            pd.dismiss();
     }
 
 
@@ -264,6 +289,33 @@ public class HomeFragment extends Fragment {
         PastAndFutureAdapter pastAndFutureAdapter=new PastAndFutureAdapter(list);
         addressRecycler.setAdapter(pastAndFutureAdapter);
         addressRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+
+        num-=1;
+        if(num==0)
+            pd.dismiss();
+    }
+
+
+    private class ScrollTask extends TimerTask {
+
+        PastAndFutureAdapter adapter;
+        RecyclerView recyclerView;
+        int position= Integer.MAX_VALUE/2;
+
+        public ScrollTask(PastAndFutureAdapter adapter, RecyclerView recyclerView) {
+            this.adapter = adapter;
+            this.recyclerView = recyclerView;
+        }
+
+        public void run() {
+            pastRecycler.post(new Runnable() {
+                public void run() {
+
+                    position++;
+                    recyclerView.smoothScrollToPosition(position);
+                }
+            });
+        }
     }
 
     @Override

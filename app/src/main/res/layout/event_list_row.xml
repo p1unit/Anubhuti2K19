@@ -10,6 +10,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:background="@drawable/background_event"
         android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -20,7 +21,10 @@
             android:layout_width="wrap_content"
             android:id="@+id/event_name_lis"
             android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/noto_serif_bold"
             android:layout_gravity="center"
+            android:textStyle="bold"
             android:layout_height="wrap_content" />
 
         <android.support.v7.widget.RecyclerView
@@ -60,6 +64,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_width="wrap_content"
                         android:text="Details"
+                        android:fontFamily="@font/noto_serif_bold"
                         android:textColor="#fff"
                         android:layout_height="wrap_content" />
 
@@ -90,6 +95,7 @@
                         android:layout_width="wrap_content"
                         android:text="Register"
                         android:textColor="#fff"
+                        android:fontFamily="@font/noto_serif_bold"
                         android:layout_height="wrap_content" />
 
                 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.anubhuti.knit.Fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -42,6 +43,7 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
     private RecyclerView recyclerView;
     private FireBaseData fireBaseData;
     private String name="";
+    private ProgressDialog pd;
 
     public EventsFragment() {
         // Required empty public constructor
@@ -62,6 +64,11 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
         recyclerView=(RecyclerView)view.findViewById(R.id.event_category_recycler);
         recyclerView.setHasFixedSize(true);
         mDatabase=FirebaseDatabase.getInstance().getReference("EventCatogry");
+
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
 
         fireBaseData=new FireBaseData();
 
@@ -120,18 +127,19 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
 
     private void showData(List<EventCatogry> list2) {
 
-        Log.e("list1",list2.get(0).getName()+" "+list2.get(1).getName());
-        Log.e("list2",list2.get(0).getImageUrl()+" "+list2.get(1).getImageUrl());
-        Log.e("list3",list2.get(0).getId()+" "+list2.get(1).getId());
-
+//        Log.e("list1",list2.get(0).getName()+" "+list2.get(1).getName());
+//        Log.e("list2",list2.get(0).getImageUrl()+" "+list2.get(1).getImageUrl());
+//        Log.e("list3",list2.get(0).getId()+" "+list2.get(1).getId());
 
         CategoryAdapter adapter = new CategoryAdapter(this,list2);
         recyclerView.setAdapter(adapter);
+        pd.dismiss();
     }
 
     @Override
     public void callId(String str,String name) {
 
+        pd.show();
         this.name=name;
         EventListService eventListService=new EventListService(this);
         eventListService.getEventList(str);
@@ -144,6 +152,7 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
         intent.putExtra("listEvent",response);
         intent.putExtra("name",name);
         startActivity(intent);
+        pd.dismiss();
 
     }
 

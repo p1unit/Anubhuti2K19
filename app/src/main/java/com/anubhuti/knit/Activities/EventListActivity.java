@@ -1,5 +1,6 @@
 package com.anubhuti.knit.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
     TextView toolbarText;
     ImageView backbtn;
 
+    ProgressDialog pd ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,10 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
         recyclerView=this.findViewById(R.id.event_list_recycler);
         toolbarText=this.findViewById(R.id.toolbar_text);
         backbtn=this.findViewById(R.id.backbtn);
+
+        pd=new ProgressDialog(this);
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
 
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -63,14 +70,15 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
     @Override
     public void detailEvent(String id) {
 
+        pd.show();
         EventListService eventListService=new EventListService(this);
         eventListService.getEventDesd(id);
-
     }
 
     @Override
     public void getEvent(EventDescResponse response) {
 
+        pd.dismiss();
         Intent intent=new Intent(this,EventDiscription.class);
         intent.putExtra("eventData",response);
         startActivity(intent);
