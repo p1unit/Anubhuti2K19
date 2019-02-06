@@ -47,7 +47,7 @@ public class TeamviewAdapter extends RecyclerView.Adapter<TeamviewAdapter.MyView
             fb=itemView.findViewById(R.id.team_fb);
 
             phone.setOnClickListener(this);
-            profile.setOnClickListener(this);
+            email.setOnClickListener(this);
             fb.setOnClickListener(this);
         }
 

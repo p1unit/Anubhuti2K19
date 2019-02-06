@@ -215,9 +215,9 @@ public class TeamFragment extends Fragment implements TeamInterface {
 
     @Override
     public void emailClick(String email) {
+
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        String s=email;
-        String ss="mailto:"+ s +"?subject=" + "" + "&body=" + "";
+        String ss="mailto:"+ email +"?subject=" + "" + "&body=" + "";
         Uri data = Uri.parse(ss);
         intent.setData(data);
         startActivity(intent);

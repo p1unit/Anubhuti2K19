@@ -72,7 +72,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         setSupportActionBar(toolbar);
 
         toolBarTitle=this.findViewById(R.id.toolbar_title);
-        toolBarTitle.setText("Anubhuti2k19");
+        toolBarTitle.setText("Anubhuti19");
 
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
