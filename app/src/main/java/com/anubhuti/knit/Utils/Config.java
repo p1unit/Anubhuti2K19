@@ -23,6 +23,8 @@ public class Config {
     public static final String SHARED_PREFERENCE_FIREBASE_DATA="FIREBASEDATA";
     public static final String SHARED_PREFERENCE_USER_DATA="USERDATA";
 
+
+
     public static void logW(String TAG,String str){
         Log.w(TAG,str);
     }

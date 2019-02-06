@@ -53,13 +53,13 @@
             app:timeTextColor="#000000"
             app:timeTextSize="22sp"
             app:isTimeTextBold="true"
-            app:suffixGravity="bottom"
+            app:suffixGravity="center"
             app:suffixTextColor="#000000"
             app:suffixTextSize="12sp"
-            app:suffixDay="D"
-            app:suffixHour="H"
-            app:suffixMinute="M"
-            app:suffixSecond="S" />
+            app:suffixDay="Days"
+            app:suffixHour="Hours"
+            app:suffixMinute="Minutes"
+            app:suffixSecond="Seconds" />
 
         <LinearLayout
             android:layout_marginTop="10dp"

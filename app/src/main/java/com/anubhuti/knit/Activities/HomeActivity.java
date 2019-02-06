@@ -25,6 +25,7 @@ import com.anubhuti.knit.Fragments.EventsFragment;
 import com.anubhuti.knit.Fragments.HomeFragment;
 import com.anubhuti.knit.Fragments.SponserFragment;
 import com.anubhuti.knit.Fragments.TeamFragment;
+import com.anubhuti.knit.Migration.UserMigration;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
 import com.anubhuti.knit.Utils.Config;
@@ -32,6 +33,10 @@ import com.anubhuti.knit.menu.DrawerAdapter;
 import com.anubhuti.knit.menu.DrawerItem;
 import com.anubhuti.knit.menu.SimpleItem;
 import com.anubhuti.knit.menu.SpaceItem;
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
@@ -47,6 +52,9 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private static final int POS_SPONSER_DETAIL=5;
     private static final int POS_SHARE_APP=6;
     private static final int POS_RATE_US=7;
+
+    private UserMigration userMigration=new UserMigration();
+    private GoogleSignInClient mGoogleSignInClient;
 
     private TextView toolBarTitle;
 
@@ -255,5 +263,19 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     public void onDestroy() {
         super.onDestroy();
         Runtime.getRuntime().freeMemory();
+    }
+
+    public void logout(View view) {
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        mGoogleSignInClient= GoogleSignIn.getClient(this, gso);
+
+//        LoginManager.getInstance().logOut();
+        mGoogleSignInClient.signOut();
+        userMigration.setuserLogout();
+
+        Intent intent=new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
