@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.anubhuti.knit.Adapter.PastAndFutureAdapter;
 import com.anubhuti.knit.Migration.FireBaseData;
@@ -23,7 +25,9 @@ import com.anubhuti.knit.R;
 import com.anubhuti.knit.Response.PastFutureResponse;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
 import com.anubhuti.knit.Utils.Config;
+import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,7 +50,7 @@ import cn.iwgang.countdownview.CountdownView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements YouTubePlayer.OnInitializedListener, YouTubePlayer.PlaybackEventListener, YouTubePlayer.PlayerStateChangeListener {
 
 
     public HomeFragment() {
@@ -117,6 +121,16 @@ public class HomeFragment extends Fragment {
         setGloriousPast();
         setAddressData();
         setUpcoming();
+
+
+        // youtube set
+
+        YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.add(R.id.youtube_layout, youTubePlayerFragment).commit();
+
+        youTubePlayerFragment.initialize("AIzaSyAqP021C3PpCUgxj1AnTixCEsl6xRJW1QA",this);
+
     }
 
 
@@ -149,8 +163,6 @@ public class HomeFragment extends Fragment {
     private void getFirebaseData1() {
 
         final List<PastFutureData> list=new ArrayList<>();
-
-        Config.toastShort(ApplicationContextProvider.getContext(),"hi");
 
         mDatabase1.addValueEventListener( new ValueEventListener() {
             @Override
@@ -316,7 +328,6 @@ public class HomeFragment extends Fragment {
             pd.dismiss();
     }
 
-
     private class ScrollTask extends TimerTask {
 
         PastAndFutureAdapter adapter;
@@ -343,6 +354,82 @@ public class HomeFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         Runtime.getRuntime().freeMemory();
+    }
+
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean b) {
+
+        player.setPlaybackEventListener(this);
+        player.setPlayerStateChangeListener(this);
+
+        if (!b) {
+            player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+            player.loadVideo("2dyD9_cJ9Q8");
+            player.play();
+        }
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+        String errorMessage = youTubeInitializationResult.toString();
+        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+        Log.d("errorMessage:", errorMessage);
+    }
+
+    @Override
+    public void onPlaying() {
+
+    }
+
+    @Override
+    public void onPaused() {
+
+    }
+
+    @Override
+    public void onStopped() {
+
+    }
+
+    @Override
+    public void onBuffering(boolean b) {
+
+    }
+
+    @Override
+    public void onSeekTo(int i) {
+
+    }
+
+    @Override
+    public void onLoading() {
+
+    }
+
+    @Override
+    public void onLoaded(String s) {
+
+    }
+
+    @Override
+    public void onAdStarted() {
+
+    }
+
+    @Override
+    public void onVideoStarted() {
+
+    }
+
+    @Override
+    public void onVideoEnded() {
+
+    }
+
+    @Override
+    public void onError(YouTubePlayer.ErrorReason errorReason) {
+
     }
 
 }
