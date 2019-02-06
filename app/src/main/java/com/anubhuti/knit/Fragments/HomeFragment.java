@@ -22,6 +22,7 @@ import com.anubhuti.knit.Model.PastFutureData;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Response.PastFutureResponse;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
+import com.anubhuti.knit.Utils.Config;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.database.DataSnapshot;
@@ -90,7 +91,7 @@ public class HomeFragment extends Fragment {
         pd.setCancelable(false);
         pd.show();
 
-        num=2;
+        num=3;
 
         mCvCountdownView = view.findViewById(R.id.counter);
 
@@ -115,7 +116,9 @@ public class HomeFragment extends Fragment {
 
         setGloriousPast();
         setAddressData();
+        setUpcoming();
     }
+
 
     private void dateTimeStuff() {
 
@@ -134,9 +137,20 @@ public class HomeFragment extends Fragment {
         mCvCountdownView.start(diffInMillies);
     }
 
+
+
+    private void setUpcoming() {
+        mDatabase1= FirebaseDatabase.getInstance().getReference("upcoming");
+        getStoredData1();   // getting stored Data
+        getFirebaseData1();
+
+    }
+
     private void getFirebaseData1() {
 
         final List<PastFutureData> list=new ArrayList<>();
+
+        Config.toastShort(ApplicationContextProvider.getContext(),"hi");
 
         mDatabase1.addValueEventListener( new ValueEventListener() {
             @Override
@@ -150,6 +164,7 @@ public class HomeFragment extends Fragment {
                 response1.setData(list);
                 fireBaseData.setUpcoming(response1);
                 showData1(list);
+
 
 
             }
@@ -174,7 +189,13 @@ public class HomeFragment extends Fragment {
 
     private void showData1(List<PastFutureData> list) {
 
+        PastAndFutureAdapter pastAndFutureAdapter=new PastAndFutureAdapter(list);
+        upcomingRecycler.setAdapter(pastAndFutureAdapter);
+        upcomingRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+
         num-=1;
+        if(num==0)
+            pd.dismiss();
     }
 
     private void setGloriousPast() {
@@ -230,8 +251,8 @@ public class HomeFragment extends Fragment {
         pastRecycler.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
 
 
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new ScrollTask(pastAndFutureAdapter,pastRecycler), 2000, 5000);
+//        Timer timer = new Timer();
+//        timer.scheduleAtFixedRate(new ScrollTask(pastAndFutureAdapter,pastRecycler), 2000, 5000);
 
         num-=1;
         if(num==0)
