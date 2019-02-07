@@ -15,7 +15,8 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_centerHorizontal="true"
-        android:layout_height="180dp" />
+        android:layout_height="180dp"
+        />
 
     <android.support.v7.widget.CardView
         android:layout_marginTop="80dp"
@@ -90,6 +91,7 @@
                     android:layout_height="75dp"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_facebook"
+
                     android:layout_centerHorizontal="true"
                     />
 

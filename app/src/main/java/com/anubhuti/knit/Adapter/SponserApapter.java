@@ -1,5 +1,8 @@
 package com.anubhuti.knit.Adapter;
 
+import android.content.Intent;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.anubhuti.knit.Interfaces.SponserInterface;
 import com.anubhuti.knit.Model.SponserDetail;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
@@ -20,9 +24,11 @@ import java.util.List;
 public class SponserApapter extends  RecyclerView.Adapter<SponserApapter.MyViewHolder> {
 
     List<SponserDetail> list;
+    SponserInterface anInterface;
 
-    public SponserApapter(List<SponserDetail> list) {
+    public SponserApapter(List<SponserDetail> list, SponserInterface anInterface) {
         this.list = list;
+        this.anInterface = anInterface;
     }
 
     @NonNull
@@ -58,6 +64,7 @@ public class SponserApapter extends  RecyclerView.Adapter<SponserApapter.MyViewH
             sponser_image=itemView.findViewById(R.id.sponser_id);
             name=itemView.findViewById(R.id.name);
             desc=itemView.findViewById(R.id.desc);
+            desc.setPaintFlags(desc.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -69,8 +76,8 @@ public class SponserApapter extends  RecyclerView.Adapter<SponserApapter.MyViewH
 
         private void cardClicked(int adapterPosition) {
 
-            // ToDo handel Click
             String url =list.get(adapterPosition).getWebLink();
+            anInterface.gotoLink(url);
         }
 
         public void setImage(String url) {

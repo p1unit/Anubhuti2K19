@@ -1,7 +1,8 @@
 package com.anubhuti.knit.Fragments;
 
 
-import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.anubhuti.knit.Adapter.SponserApapter;
+import com.anubhuti.knit.Interfaces.SponserInterface;
 import com.anubhuti.knit.Migration.FireBaseData;
 import com.anubhuti.knit.Model.SponserDetail;
 import com.anubhuti.knit.R;
@@ -32,7 +34,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SponserFragment extends Fragment {
+public class SponserFragment extends Fragment implements SponserInterface {
 
     private DatabaseReference mDatabase;
     private List<SponserDetail> list=new ArrayList<>();
@@ -41,7 +43,6 @@ public class SponserFragment extends Fragment {
     RecyclerView recyclerView;
     SponserApapter sponserApapter;
     private FireBaseData  fireBaseData;
-    private ProgressDialog pd;
 
 
     public SponserFragment() {
@@ -62,11 +63,6 @@ public class SponserFragment extends Fragment {
         recyclerView=(RecyclerView)view.findViewById(R.id.sponser_recycler);
         recyclerView.setHasFixedSize(true);
         mDatabase=FirebaseDatabase.getInstance().getReference("SponserDetail");
-
-        pd=new ProgressDialog(getActivity());
-        pd.setMessage("Please Wait for a Sec");
-        pd.setCancelable(false);
-        pd.show();
 
         fireBaseData=new FireBaseData();
 
@@ -127,15 +123,16 @@ public class SponserFragment extends Fragment {
 
         Log.e("list",sponserList.get(0).getName()+" "+sponserList.get(1).getName());
 
-        sponserApapter=new SponserApapter(sponserList);
+        sponserApapter=new SponserApapter(sponserList,this);
         recyclerView.setAdapter(sponserApapter);
-        pd.dismiss();
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Runtime.getRuntime().freeMemory();
+    public void gotoLink(String url) {
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("https://www.google.com"));
+        getActivity().startActivity(i);
     }
 }
 

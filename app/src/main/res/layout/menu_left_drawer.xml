@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background"
     android:orientation="vertical">
 
@@ -28,7 +29,7 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="20dp" />
+        android:layout_height="10dp" />
 
     </LinearLayout>
 
@@ -36,9 +37,9 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="5"
-        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fb_icon"
@@ -47,9 +48,11 @@
             android:clickable="true"
             android:focusable="true"
             android:onClick="fbClick"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_facebook"
             android:layout_gravity="center_horizontal"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp"
             />
         <RelativeLayout
             android:layout_width="0dp"
@@ -61,13 +64,15 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/insta_icon"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
             android:onClick="instaClick"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_instagram" />
+            android:src="@drawable/ic_instagram"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp"/>
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -83,7 +88,9 @@
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
-            android:layout_height="60dp"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_youtube" />
 
@@ -101,7 +108,9 @@
             android:clickable="true"
             android:focusable="true"
             android:onClick="anubhutiClick"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
+            app:civ_border_color="#fff"
+            app:civ_border_width="1dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/anubhti_icon" />
 

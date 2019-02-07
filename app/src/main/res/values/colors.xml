@@ -12,7 +12,9 @@
     <color name="black">#000000</color>
     <color name="orange">#ff6600</color>
     <color name="green">#0A8B5B</color>
+    <color name="pink">#ffbdbd</color>
     <color name="facebook_color">#3b5998</color>
     <color name="google_color">#db3236</color>
-    <color name="pink">#FFBDBD</color>
+    <color name="cream">#ffdd99</color>
+    <color name="voilet">#ff99dd</color>
 </resources>
