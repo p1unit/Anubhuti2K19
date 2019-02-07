@@ -44,6 +44,7 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
     private FireBaseData fireBaseData;
     private String name="";
     private ProgressDialog pd;
+    private EventCatogry obj;
 
     public EventsFragment() {
         // Required empty public constructor
@@ -127,22 +128,19 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
 
     private void showData(List<EventCatogry> list2) {
 
-//        Log.e("list1",list2.get(0).getName()+" "+list2.get(1).getName());
-//        Log.e("list2",list2.get(0).getImageUrl()+" "+list2.get(1).getImageUrl());
-//        Log.e("list3",list2.get(0).getId()+" "+list2.get(1).getId());
-
         CategoryAdapter adapter = new CategoryAdapter(this,list2);
         recyclerView.setAdapter(adapter);
         pd.dismiss();
     }
 
     @Override
-    public void callId(String str,String name) {
+    public void callId(EventCatogry obj) {
 
+        this.obj=obj;
         pd.show();
         this.name=name;
         EventListService eventListService=new EventListService(this);
-        eventListService.getEventList(str);
+        eventListService.getEventList(obj.getId());
 
     }
 
@@ -150,7 +148,8 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
     public void setEventList(EventTypeResponse response) {
         Intent intent=new Intent(ApplicationContextProvider.getContext(),EventListActivity.class);
         intent.putExtra("listEvent",response);
-        intent.putExtra("name",name);
+        intent.putExtra("name",obj.getName());
+        intent.putExtra("EventData",obj);
         startActivity(intent);
         pd.dismiss();
 

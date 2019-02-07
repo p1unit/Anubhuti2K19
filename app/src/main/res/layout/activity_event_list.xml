@@ -17,6 +17,7 @@
         app:theme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_height="wrap_content"
         app:titleMarginStart="12dp"
+        android:background="@color/pink"
         app:contentInsetLeft="7dp"
         app:contentInsetStart="7dp"
         app:contentInsetRight="7dp"
@@ -35,7 +36,8 @@
             android:id="@+id/toolbar_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="20sp"
+            android:fontFamily="@font/main_font"
             android:textColor="@color/black"
             android:paddingStart="10dp"
             tools:ignore="RtlSymmetry" />

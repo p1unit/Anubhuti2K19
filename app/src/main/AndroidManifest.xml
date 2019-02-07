@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activities.PopUpContact"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -37,7 +40,7 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity android:name=".Activities.EventDiscription" />
-        <activity android:name=".Activities.EventListActivity"></activity>
+        <activity android:name=".Activities.EventListActivity" />
     </application>
 
 </manifest>

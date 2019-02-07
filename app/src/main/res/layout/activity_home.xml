@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFBDBD" >
+            android:background="@color/pink" >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -23,14 +23,15 @@
                 <TextView
                     android:layout_centerVertical="true"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/noto_serif_bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/main_font"
                     android:id="@+id/toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <ImageView
                     android:onClick="logout"
+                    android:padding="2dp"
                     android:layout_marginEnd="10dp"
                     android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"

@@ -1,20 +1,26 @@
 package com.anubhuti.knit.Activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.anubhuti.knit.Model.EventCatogry;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Response.EventDescResponse;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
@@ -27,6 +33,7 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
         private int mMaxScrollSize;
         CollapsingToolbarLayout layout;
         private boolean mIsImageHidden;
+        EventCatogry eventdata;
       //  TextView descText;
         ImageView img;
         WebView webView;
@@ -45,6 +52,7 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
 
             Intent intent=getIntent();
             EventDescResponse response=(EventDescResponse) intent.getSerializableExtra("eventData");
+            eventdata= (EventCatogry) intent.getSerializableExtra("contact");
 
             str=response.getDesc();
             layout.setTitle(response.getName());
@@ -70,9 +78,24 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
 
             AppBarLayout appbar = (AppBarLayout) findViewById(R.id.flexible_example_appbar);
             appbar.addOnOffsetChangedListener(this);
+
+            FloatingActionButton fab = findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startPopUp();
+                }
+            });
         }
 
-        @Override
+    private void startPopUp() {
+
+            Intent intent =new Intent(this,PopUpContact.class);
+            intent.putExtra("EventData",eventdata);
+            startActivity(intent);
+    }
+
+    @Override
         public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
             if (mMaxScrollSize == 0)
                 mMaxScrollSize = appBarLayout.getTotalScrollRange();
@@ -99,6 +122,8 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
         public static void start(Context c) {
             c.startActivity(new Intent(c, EventDiscription.class));
         }
+
+
 
     @Override
     public void onDestroy() {

@@ -10,7 +10,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:background="@drawable/background_event"
+        android:background="@drawable/background_home"
         android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"

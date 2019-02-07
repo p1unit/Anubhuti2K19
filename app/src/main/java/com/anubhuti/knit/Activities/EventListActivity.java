@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.anubhuti.knit.Adapter.EventListAdapter;
 import com.anubhuti.knit.Interfaces.Detail_RegisterInterface;
+import com.anubhuti.knit.Model.EventCatogry;
 import com.anubhuti.knit.Model.EventTypeModel;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Response.EventDescResponse;
@@ -26,6 +27,7 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
     RecyclerView recyclerView;
     TextView toolbarText;
     ImageView backbtn;
+    EventCatogry  eventObj;
 
     ProgressDialog pd ;
 
@@ -57,6 +59,8 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
             }
         });
 
+        eventObj= (EventCatogry) intent.getSerializableExtra("EventData");
+
         List<EventTypeModel> lis=obj.getAllData();
         EventListAdapter eventListAdapter=new EventListAdapter(this,lis);
         recyclerView.setAdapter(eventListAdapter);
@@ -81,6 +85,7 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
         pd.dismiss();
         Intent intent=new Intent(this,EventDiscription.class);
         intent.putExtra("eventData",response);
+        intent.putExtra("contact",eventObj);
         startActivity(intent);
     }
 
