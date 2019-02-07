@@ -95,7 +95,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         }
 
         private void getRegister() {
-
+            anInterface.registerEvent();
         }
 
         private void getDetail(int adapterPosition) {

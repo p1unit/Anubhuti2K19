@@ -2,6 +2,7 @@ package com.anubhuti.knit.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -69,6 +70,10 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
     @Override
     public void registerEvent() {
 
+        String url = "https://anubhuti19.in/anubhuti19/welcome/register";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
     @Override
