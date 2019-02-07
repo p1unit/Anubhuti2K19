@@ -83,7 +83,7 @@ public class TeamviewAdapter extends RecyclerView.Adapter<TeamviewAdapter.MyView
         }
 
         private void fbClick(int adapterPosition) {
-            anInterface.fbClick(list.get(adapterPosition).getFblink());
+            anInterface.fbClick(list.get(adapterPosition).getFacebook());
         }
 
         private void emailClick(int adapterPosition) {
@@ -107,6 +107,15 @@ public class TeamviewAdapter extends RecyclerView.Adapter<TeamviewAdapter.MyView
         holder.post.setText(teamDetail.getPost());
         holder.setImage(teamDetail.getImageUrl());
 
+        if(teamDetail.getPost().equals("Director")||teamDetail.getPost().equals("Chairman")||teamDetail.getPost().equals("Convenor")){
+            holder.phone.setVisibility(View.INVISIBLE);
+            holder.email.setVisibility(View.INVISIBLE);
+            holder.fb.setVisibility(View.INVISIBLE);
+        }else {
+            holder.phone.setVisibility(View.VISIBLE);
+            holder.email.setVisibility(View.VISIBLE);
+            holder.fb.setVisibility(View.VISIBLE);
+        }
     }
 
 

@@ -165,6 +165,9 @@ public class TeamFragment extends Fragment implements TeamInterface {
 
     @Override
     public void fbClick(String url) {
+
+        Log.e("fblilk",url);
+
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(intent);

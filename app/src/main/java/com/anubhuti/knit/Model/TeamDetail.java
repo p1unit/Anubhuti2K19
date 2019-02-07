@@ -27,16 +27,16 @@ public class TeamDetail implements Serializable {
     @SerializedName("priority")
     @Expose
     private String priority;
-    @SerializedName("fblink")
+    @SerializedName("facebook")
     @Expose
-    private String fblink;
+    private String facebook;
 
-    public String getFblink() {
-        return fblink;
+    public String getFacebook() {
+        return facebook;
     }
 
-    public void setFblink(String fblink) {
-        this.fblink = fblink;
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
     }
 
     public String getName() {
@@ -87,14 +87,14 @@ public class TeamDetail implements Serializable {
         this.priority = priority;
     }
 
-    public TeamDetail(String name, String post, String emailId, String imageUrl, String mobileNo, String priority, String fblink) {
+    public TeamDetail(String name, String post, String emailId, String imageUrl, String mobileNo, String priority, String facebook) {
         this.name = name;
         this.post = post;
         this.emailId = emailId;
         this.imageUrl = imageUrl;
         this.mobileNo = mobileNo;
         this.priority = priority;
-        this.fblink = fblink;
+        this.facebook = facebook;
     }
 
     public TeamDetail() {
