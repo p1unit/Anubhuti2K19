@@ -9,11 +9,13 @@ import com.anubhuti.knit.Model.EventCatogry;
 import com.anubhuti.knit.Model.PastFutureData;
 import com.anubhuti.knit.Model.SponserDetail;
 import com.anubhuti.knit.Model.TeamDetail;
+import com.anubhuti.knit.Model.YoutubeId;
 import com.anubhuti.knit.Response.ContactUsResponse;
 import com.anubhuti.knit.Response.EventCategoryResponse;
 import com.anubhuti.knit.Response.PastFutureResponse;
 import com.anubhuti.knit.Response.SponserResponse;
 import com.anubhuti.knit.Response.TeamResponse;
+import com.anubhuti.knit.Response.YoutubeList;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
 import com.anubhuti.knit.Utils.Config;
 import com.google.gson.Gson;
@@ -130,4 +132,21 @@ public class FireBaseData {
         PastFutureResponse pastFutureResponse=gson.fromJson(str,PastFutureResponse.class);
         return pastFutureResponse.getData();
     }
+
+    public List<YoutubeId> getYouTubeData(){
+
+        Gson gson=new Gson();
+        String str=sharedPreferences.getString("youtubeId","");
+        YoutubeList pastFutureResponse=gson.fromJson(str,YoutubeList.class);
+        return pastFutureResponse.getYoutubeVideos();
+    }
+
+    public void setYouTubeData(YoutubeList response) {
+
+        Gson gson=new Gson();
+        String str=gson.toJson(response);
+        sharedPreferences.edit().putString("youtubeId",str).apply();
+//        Config.toastShort(ApplicationContextProvider.getContext(),str);
+    }
+
 }

@@ -21,8 +21,10 @@ import android.widget.Toast;
 import com.anubhuti.knit.Adapter.PastAndFutureAdapter;
 import com.anubhuti.knit.Migration.FireBaseData;
 import com.anubhuti.knit.Model.PastFutureData;
+import com.anubhuti.knit.Model.YoutubeId;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Response.PastFutureResponse;
+import com.anubhuti.knit.Response.YoutubeList;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
 import com.anubhuti.knit.Utils.Config;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -41,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -122,6 +125,7 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
         setAddressData();
         setUpcoming();
 
+        getYoutubeData();
 
         // youtube set
 
@@ -131,6 +135,37 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
 
         youTubePlayerFragment.initialize("AIzaSyAqP021C3PpCUgxj1AnTixCEsl6xRJW1QA",this);
 
+    }
+
+    private void getYoutubeData() {
+
+        final List<YoutubeId> list=new ArrayList<>();
+
+        DatabaseReference mD=FirebaseDatabase.getInstance().getReference("youtubeVideos");
+
+        final YoutubeList repo=new YoutubeList();
+
+        mD.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    YoutubeId data=postSnapshot.getValue(YoutubeId.class);
+                    list.add(data);
+
+                }
+                repo.setYoutubeVideos(list);
+                fireBaseData.setYouTubeData(repo);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.e("ErrorTAG", "loadPost:onCancelled", databaseError.toException());
+
+            }
+        });
     }
 
 
@@ -359,12 +394,24 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean b) {
 
+        List<YoutubeId> ylist;
+
+        try {
+            ylist = fireBaseData.getYouTubeData();
+        }catch (NullPointerException ignored){
+            ylist=new ArrayList<>();
+            ylist.add(new YoutubeId("2dyD9_cJ9Q8"));
+        }
+
+        String str=ylist.get((new Random().nextInt())%ylist.size()).getCode();
+
+
         player.setPlaybackEventListener(this);
         player.setPlayerStateChangeListener(this);
 
         if (!b) {
             player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-            player.loadVideo("2dyD9_cJ9Q8");
+            player.loadVideo(str);
             player.play();
         }
     }
