@@ -1,5 +1,6 @@
 package com.anubhuti.knit.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -18,6 +19,7 @@ import com.anubhuti.knit.Migration.UserMigration;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
 import com.anubhuti.knit.Utils.Config;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -45,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private CardView facebookloginButton;
     private CallbackManager callbackManager;
     private UserMigration userMigration;
+    private ProgressDialog pd;
 
 
     @Override
@@ -65,6 +68,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
+
+        pd=new ProgressDialog(this);
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
 
         switch (view.getId()){
             case R.id.google_sign_in:
@@ -122,21 +130,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+
+        pd.dismiss();
 
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }else {
-            boolean ishandled=callbackManager.onActivityResult(requestCode,resultCode,data);
 
-            if (ishandled){
+            callbackManager.onActivityResult(requestCode,resultCode,data);
+            boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
+
+            if (!loggedIn){
                 Config.toastShort(this,"Welcome to our Castle");
                 loginDone();
             }else {
                 Config.toastShort(this,Config.ERROR_TOAST);
             }
         }
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
