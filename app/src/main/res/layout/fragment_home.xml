@@ -31,12 +31,12 @@
         <ImageView
             android:layout_width="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/intro"
+            android:src="@drawable/intro_background"
             android:layout_height="match_parent" />
 
             <cn.iwgang.countdownview.CountdownView
                 android:id="@+id/counter"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isHideTimeBackground="true"
@@ -168,14 +168,31 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_marginTop="10dp"
-                android:id="@+id/past_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:id="@+id/past_recycler"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal">-->
 
-            </android.support.v7.widget.RecyclerView>
+            <!--</android.support.v7.widget.RecyclerView>-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:clipToPadding="false"
+            android:clipChildren="false">
+
+        <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/card_stack_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        </com.yuyakaido.android.cardstackview.CardStackView>
+
+        </RelativeLayout>
 
 
         <LinearLayout

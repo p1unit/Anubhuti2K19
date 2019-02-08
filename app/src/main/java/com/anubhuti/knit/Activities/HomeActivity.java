@@ -147,12 +147,20 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         }
     }
 
-    private void showFragment(Fragment fragment) {
+    private void showFragment(final Fragment fragment) {
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container_home, fragment);
-        fragmentTransaction.commit();
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.container_home, fragment);
+                        fragmentTransaction.commit();
+                    }
+                }, 300);
+
 //        getFragmentManager().beginTransaction()
 //                .replace(R.id.container, fragment)
 //                .commit();

@@ -47,6 +47,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     implementation 'com.github.iwgang:countdownview:2.1.6'
+    implementation "com.yuyakaido.android:card-stack-view:2.2.2"
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
     //implementation 'com.facebook.android:facebook-login:[4,5)'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
