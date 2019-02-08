@@ -31,7 +31,6 @@
                 android:id="@+id/event_img"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/london_flat"
                 android:scaleType="centerCrop"
                 />
 
