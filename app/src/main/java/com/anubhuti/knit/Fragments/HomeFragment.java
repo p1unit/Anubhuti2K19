@@ -2,7 +2,6 @@ package com.anubhuti.knit.Fragments;
 
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,13 +26,11 @@ import com.anubhuti.knit.R;
 import com.anubhuti.knit.Response.PastFutureResponse;
 import com.anubhuti.knit.Response.YoutubeList;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
-import com.anubhuti.knit.Utils.Config;
-import com.anubhuti.temp.CardStackAdapter;
-import com.anubhuti.temp.SpotDiffCallback;
+import com.anubhuti.knit.TinderSlider.CardStackAdapter;
+import com.anubhuti.knit.TinderSlider.SpotDiffCallback;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
-import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,15 +42,10 @@ import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.Direction;
 import com.yuyakaido.android.cardstackview.StackFrom;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import cn.iwgang.countdownview.CountdownView;

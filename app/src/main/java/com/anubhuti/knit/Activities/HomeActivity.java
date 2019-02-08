@@ -24,6 +24,7 @@ import com.anubhuti.knit.Fragments.ContactUsFragment;
 import com.anubhuti.knit.Fragments.EventsFragment;
 import com.anubhuti.knit.Fragments.HomeFragment;
 import com.anubhuti.knit.Fragments.SponserFragment;
+import com.anubhuti.knit.Fragments.StartFragment;
 import com.anubhuti.knit.Fragments.TeamFragment;
 import com.anubhuti.knit.Migration.UserMigration;
 import com.anubhuti.knit.R;
@@ -124,7 +125,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 showFragment(eventsFragment);
                 break;
             case 2:
-                // ToDo yet to build
+                StartFragment startFragment=new StartFragment();
+                showFragment(startFragment);
                 break;
             case 3:
                 ContactUsFragment fragment=new ContactUsFragment();

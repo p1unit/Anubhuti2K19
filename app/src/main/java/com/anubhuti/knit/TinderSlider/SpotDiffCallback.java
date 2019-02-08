@@ -1,4 +1,4 @@
-package com.anubhuti.temp;
+package com.anubhuti.knit.TinderSlider;
 
 import android.support.v7.util.DiffUtil;
 
