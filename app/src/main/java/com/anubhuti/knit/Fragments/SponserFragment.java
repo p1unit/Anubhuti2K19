@@ -121,8 +121,6 @@ public class SponserFragment extends Fragment implements SponserInterface {
 
     private void showData(List<SponserDetail> sponserList) {
 
-        Log.e("list",sponserList.get(0).getName()+" "+sponserList.get(1).getName());
-
         sponserApapter=new SponserApapter(sponserList,this);
         recyclerView.setAdapter(sponserApapter);
     }
@@ -130,9 +128,11 @@ public class SponserFragment extends Fragment implements SponserInterface {
     @Override
     public void gotoLink(String url) {
 
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse("https://www.google.com"));
-        getActivity().startActivity(i);
+        if(!url.equals("a")) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            getActivity().startActivity(i);
+        }
     }
 }
 

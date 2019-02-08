@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ff9966</color>
-    <color name="colorPrimaryDark">#ff6600</color>
-    <color name="colorAccent">#cc0000</color>
+    <color name="colorPrimary">#ffbdbd</color>
+    <color name="colorPrimaryDark">#ff99dd</color>
+    <color name="colorAccent">#ffdd99</color>
 
     <color name="textColorPrimary">#000</color>
     <color name="textColorSecondary">#ffff66</color>
@@ -15,6 +15,6 @@
     <color name="pink">#ffbdbd</color>
     <color name="facebook_color">#3b5998</color>
     <color name="google_color">#db3236</color>
-    <color name="cream">#ffdd99</color>
     <color name="voilet">#ff99dd</color>
+    <color name="cream">#ffdd99</color>
 </resources>
