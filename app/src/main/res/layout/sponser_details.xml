@@ -42,6 +42,7 @@
             />
 
         <ImageView
+            android:layout_marginTop="5dp"
             android:layout_gravity="center"
             android:id="@+id/sponser_id"
             android:layout_width="match_parent"
