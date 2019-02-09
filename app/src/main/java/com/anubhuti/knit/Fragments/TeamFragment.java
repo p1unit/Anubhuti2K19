@@ -52,7 +52,7 @@ public class TeamFragment extends Fragment implements TeamInterface {
     RecyclerView teamrecyclerview;
     private FireBaseData fireBaseData;
     private String person_info="";
-
+    private boolean isError=false;
     private ProgressDialog pd;
 
 
@@ -81,12 +81,27 @@ public class TeamFragment extends Fragment implements TeamInterface {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         teamrecyclerview.setLayoutManager(layoutManager);
 
-        pd=new ProgressDialog(getActivity());
-        pd.setCancelable(false);
-        pd.show();
+       showPd();
 
 
         return view;
+    }
+
+    private void showPd() {
+
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        if(pd.isShowing())
+                            Config.toastShort(ApplicationContextProvider.getContext(),Config.ERROR_TOAST);
+                        pd.dismiss();
+                    }
+                }, 10000);
+
     }
 
     @Override

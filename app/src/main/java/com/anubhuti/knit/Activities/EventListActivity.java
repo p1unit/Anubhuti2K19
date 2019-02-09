@@ -68,9 +68,8 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
     }
 
     @Override
-    public void registerEvent() {
+    public void registerEvent(String url) {
 
-        String url = "https://anubhuti19.in/anubhuti19/welcome/register";
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
@@ -92,6 +91,11 @@ public class EventListActivity extends AppCompatActivity implements Detail_Regis
         intent.putExtra("eventData",response);
         intent.putExtra("contact",eventObj);
         startActivity(intent);
+    }
+
+    @Override
+    public void errorResponse() {
+        pd.dismiss();
     }
 
     @Override

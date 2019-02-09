@@ -89,13 +89,13 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
             register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getRegister();
+                    getRegister(getAdapterPosition());
                 }
             });
         }
 
-        private void getRegister() {
-            anInterface.registerEvent();
+        private void getRegister(int adapterPosition) {
+            anInterface.registerEvent(list.get(adapterPosition).getRegUrl());
         }
 
         private void getDetail(int adapterPosition) {

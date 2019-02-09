@@ -26,6 +26,9 @@ public class EventTypeModel implements Serializable {
     @SerializedName("image3")
     @Expose
     private String image3;
+    @SerializedName("regUrl")
+    @Expose
+    private String regUrl;
 //    @SerializedName("__v")
 //    @Expose
 //    private Integer v;
@@ -78,6 +81,14 @@ public class EventTypeModel implements Serializable {
         this.image3 = image3;
     }
 
+    public String getRegUrl() {
+        return regUrl;
+    }
+
+    public void setRegUrl(String regUrl) {
+        this.regUrl = regUrl;
+    }
+
 //    public Integer getV() {
 //        return v;
 //    }
@@ -90,12 +101,13 @@ public class EventTypeModel implements Serializable {
     public EventTypeModel() {
     }
 
-    public EventTypeModel(String id, String descId, String name, String image1, String image2, String image3) {
+    public EventTypeModel(String id, String descId, String name, String image1, String image2, String image3, String regUrl) {
         this.id = id;
         this.descId = descId;
         this.name = name;
         this.image1 = image1;
         this.image2 = image2;
         this.image3 = image3;
+        this.regUrl = regUrl;
     }
 }

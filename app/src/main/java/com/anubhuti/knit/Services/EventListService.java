@@ -53,12 +53,14 @@ public class EventListService implements Serializable {
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
+                    listInterface.errorResponse();
                 }
             }
             @Override
             public void onFailure(Call<EventTypeResponse> call, Throwable t) {
                 Log.e("list Error","Failed");
                 apiClient.failureErrorAsync(context, t);
+                listInterface.errorResponse();
             }
         });
     }
@@ -79,12 +81,14 @@ public class EventListService implements Serializable {
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
+                    detail_registerInterface.errorResponse();
                 }
             }
             @Override
             public void onFailure(Call<EventDescResponse> call, Throwable t) {
                 Log.e("list Error","Failed");
                 apiClient.failureErrorAsync(context, t);
+                detail_registerInterface.errorResponse();
             }
         });
     }

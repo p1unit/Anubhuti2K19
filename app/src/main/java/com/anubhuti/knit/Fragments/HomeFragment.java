@@ -28,6 +28,7 @@ import com.anubhuti.knit.Response.YoutubeList;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
 import com.anubhuti.knit.TinderSlider.CardStackAdapter;
 import com.anubhuti.knit.TinderSlider.SpotDiffCallback;
+import com.anubhuti.knit.Utils.Config;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
@@ -96,10 +97,7 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
         response2=new PastFutureResponse();
         response3=new PastFutureResponse();
 
-        pd=new ProgressDialog(getActivity());
-        pd.setMessage("Please Wait for a Sec");
-        pd.setCancelable(false);
-        pd.show();
+        showPd();
 
         num=3;
 
@@ -139,6 +137,23 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
         transaction.add(R.id.youtube_layout, youTubePlayerFragment).commit();
 
         youTubePlayerFragment.initialize("AIzaSyAqP021C3PpCUgxj1AnTixCEsl6xRJW1QA",this);
+
+    }
+
+    private void showPd() {
+
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        if(pd.isShowing())
+                            Config.toastShort(ApplicationContextProvider.getContext(),Config.ERROR_TOAST);
+                        pd.dismiss();
+                    }
+                }, 11000);
 
     }
 
@@ -417,6 +432,7 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
 
         player.setPlaybackEventListener(this);
         player.setPlayerStateChangeListener(this);
+        player.setShowFullscreenButton(false);
 
         if (!b) {
             player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);

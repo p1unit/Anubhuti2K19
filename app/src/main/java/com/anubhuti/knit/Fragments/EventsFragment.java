@@ -25,6 +25,7 @@ import com.anubhuti.knit.Response.EventCategoryResponse;
 import com.anubhuti.knit.Response.EventTypeResponse;
 import com.anubhuti.knit.Services.EventListService;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
+import com.anubhuti.knit.Utils.Config;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,10 +67,7 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
         recyclerView.setHasFixedSize(true);
         mDatabase=FirebaseDatabase.getInstance().getReference("EventCatogry");
 
-        pd=new ProgressDialog(getActivity());
-        pd.setMessage("Please Wait for a Sec");
-        pd.setCancelable(false);
-        pd.show();
+        showPd();
 
         fireBaseData=new FireBaseData();
 
@@ -78,6 +76,23 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+
+    }
+
+    private void showPd() {
+
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        if(pd.isShowing())
+                            Config.toastShort(ApplicationContextProvider.getContext(),Config.ERROR_TOAST);
+                        pd.dismiss();
+                    }
+                }, 10000);
 
     }
 
@@ -153,6 +168,11 @@ public class EventsFragment extends Fragment implements CategoryListner,EventLis
         startActivity(intent);
         pd.dismiss();
 
+    }
+
+    @Override
+    public void errorResponse() {
+        pd.dismiss();
     }
 
     @Override

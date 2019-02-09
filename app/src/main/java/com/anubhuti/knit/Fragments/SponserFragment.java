@@ -1,6 +1,7 @@
 package com.anubhuti.knit.Fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class SponserFragment extends Fragment implements SponserInterface {
     RecyclerView recyclerView;
     SponserApapter sponserApapter;
     private FireBaseData  fireBaseData;
+    private ProgressDialog pd;
 
 
     public SponserFragment() {
@@ -66,12 +68,31 @@ public class SponserFragment extends Fragment implements SponserInterface {
 
         fireBaseData=new FireBaseData();
 
+        showPd();
+
         getStoredData();   // getting stored Data
         getFirebaseData(); // getting online Data
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
+
+    }
+
+    private void showPd() {
+
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        if(pd.isShowing())
+                            Config.toastShort(ApplicationContextProvider.getContext(),Config.ERROR_TOAST);
+                        pd.dismiss();
+                    }
+                }, 1000);
 
     }
 
@@ -123,6 +144,7 @@ public class SponserFragment extends Fragment implements SponserInterface {
 
         sponserApapter=new SponserApapter(sponserList,this);
         recyclerView.setAdapter(sponserApapter);
+        pd.dismiss();
     }
 
     @Override

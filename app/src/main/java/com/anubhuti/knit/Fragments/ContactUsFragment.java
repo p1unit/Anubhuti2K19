@@ -67,10 +67,7 @@ public class ContactUsFragment extends Fragment implements ContactListener {
         recyclerView.setHasFixedSize(true);
         databaseReference=FirebaseDatabase.getInstance().getReference("ContactUs");
 
-        pd=new ProgressDialog(getActivity());
-        pd.setMessage("Please Wait for a Sec");
-        pd.setCancelable(false);
-        pd.show();
+        showPd();
 
         fireBaseData =new FireBaseData();
         response=new ContactUsResponse();
@@ -79,6 +76,23 @@ public class ContactUsFragment extends Fragment implements ContactListener {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+
+    }
+
+    private void showPd() {
+
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait for a Sec");
+        pd.setCancelable(false);
+        pd.show();
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        if(pd.isShowing())
+                            Config.toastShort(ApplicationContextProvider.getContext(),Config.ERROR_TOAST);
+                        pd.dismiss();
+                    }
+                }, 10000);
 
     }
 
