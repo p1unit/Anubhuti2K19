@@ -6,20 +6,23 @@
     android:background="@drawable/background"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
     <ImageView
+        android:id="@+id/anubhti_text"
         android:src="@drawable/anubhuti_text"
         android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="80dp" />
 
+    <LinearLayout
+        android:layout_below="@+id/anubhti_text"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="10dp" />
+        android:layout_height="15dp" />
 
 
     <android.support.v7.widget.RecyclerView

@@ -2,6 +2,7 @@ package com.anubhuti.knit.Activities;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Space;
 import android.widget.TextView;
 
 import com.anubhuti.knit.Fragments.ContactUsFragment;
@@ -98,6 +100,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 createItemFor(POS_RATE_US)));
         adapter.setListener(this);
 
+
+
         RecyclerView list = findViewById(R.id.list);
         list.setNestedScrollingEnabled(true);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -105,6 +109,34 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
         adapter.setSelected(POS_HOME);
 
+    }
+
+    private void setSpace() {
+        int screenSize = getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
+
+        int sz1,sz2;
+        switch(screenSize) {
+            case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                sz1 = 10;
+                sz2 = 50;
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                sz1 = 30;
+                sz2 = 56;
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                sz1 = 20;
+                sz2 = 58;
+                break;
+            default:
+                sz1 = 15;
+                sz2 = 56;
+        }
+
+        userMigration.setScreenSize(sz1,sz2);
+
+//        space.setMinimumWidth(userMigration.getsz1());
     }
 
     @Override
