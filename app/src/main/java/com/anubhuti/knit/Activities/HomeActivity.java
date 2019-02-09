@@ -318,4 +318,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         startActivity(intent);
         finish();
     }
+
+    public void openSchedule(View view) {
+
+    }
 }
