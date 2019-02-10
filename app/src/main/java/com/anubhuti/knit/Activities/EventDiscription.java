@@ -37,6 +37,7 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
       //  TextView descText;
         ImageView img;
         WebView webView;
+        FloatingActionButton fab;
 
         String str="";
 
@@ -49,10 +50,14 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
             layout=findViewById(R.id.collapsing);
             img=this.findViewById(R.id.event_img);
             webView=this.findViewById(R.id.webview);
+            fab = findViewById(R.id.fab);
 
             Intent intent=getIntent();
             EventDescResponse response=(EventDescResponse) intent.getSerializableExtra("eventData");
             eventdata= (EventCatogry) intent.getSerializableExtra("contact");
+            if(!intent.getBooleanExtra("isShow",true)){
+                fab.hide();
+            }
 
             str=response.getDesc();
             layout.setTitle(response.getName());
@@ -79,7 +84,7 @@ public class EventDiscription extends AppCompatActivity implements AppBarLayout.
             AppBarLayout appbar = (AppBarLayout) findViewById(R.id.flexible_example_appbar);
             appbar.addOnOffsetChangedListener(this);
 
-            FloatingActionButton fab = findViewById(R.id.fab);
+
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

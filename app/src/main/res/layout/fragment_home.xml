@@ -92,7 +92,7 @@
             <TextView
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="Upcoming Person"
+                android:text="Pronights"
                 android:textColor="@color/black"
                 android:fontFamily="@font/noto_serif_bold"
                 android:layout_width="wrap_content"
@@ -218,7 +218,7 @@
             <TextView
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="Agni Theme of the Fest"
+                android:text="Theme of the Fest"
                 android:textColor="@color/black"
                 android:fontFamily="@font/noto_serif_bold"
                 android:layout_width="wrap_content"
@@ -281,7 +281,7 @@
             <TextView
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="Address"
+                android:text="Words from the Desk"
                 android:textColor="@color/black"
                 android:fontFamily="@font/noto_serif_bold"
                 android:layout_width="wrap_content"

@@ -21,6 +21,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/event_name_lis"
             android:textSize="18sp"
+            android:gravity="center"
+            android:textAlignment="gravity"
             android:textColor="@color/black"
             android:fontFamily="@font/noto_serif_bold"
             android:layout_gravity="center"

@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity  {
 
                         checkApp();
                     }
-                }, 2000);
+                }, 3500);
 
 
     }

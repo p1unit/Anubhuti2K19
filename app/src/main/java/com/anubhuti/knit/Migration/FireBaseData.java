@@ -149,4 +149,32 @@ public class FireBaseData {
 //        Config.toastShort(ApplicationContextProvider.getContext(),str);
     }
 
+    public void setStarList(PastFutureResponse response) {
+
+        Gson gson=new Gson();
+        String str=gson.toJson(response);
+        sharedPreferences.edit().putString("starData",str).apply();
+    }
+
+    public List<PastFutureData> getStarList(){
+
+        Gson gson=new Gson();
+        String str=sharedPreferences.getString("starData","");
+        PastFutureResponse pastFutureResponse=gson.fromJson(str,PastFutureResponse.class);
+        return pastFutureResponse.getData();
+    }
+
+
+    public void setStars(EventCategoryResponse response2) {
+        Gson gson=new Gson();
+        String str=gson.toJson(response2);
+        sharedPreferences.edit().putString("starListw",str).apply();
+    }
+
+    public List<EventCatogry> getStars() {
+        Gson gson=new Gson();
+        String str=sharedPreferences.getString("starListw","");
+        EventCategoryResponse response=gson.fromJson(str,EventCategoryResponse.class);
+        return response.getEventCatogry();
+    }
 }

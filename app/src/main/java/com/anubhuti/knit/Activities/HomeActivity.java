@@ -19,14 +19,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Space;
 import android.widget.TextView;
 
 import com.anubhuti.knit.Fragments.ContactUsFragment;
 import com.anubhuti.knit.Fragments.EventsFragment;
 import com.anubhuti.knit.Fragments.HomeFragment;
 import com.anubhuti.knit.Fragments.SponserFragment;
-import com.anubhuti.knit.Fragments.StartFragment;
+import com.anubhuti.knit.Fragments.StarFragment;
 import com.anubhuti.knit.Fragments.TeamFragment;
 import com.anubhuti.knit.Migration.UserMigration;
 import com.anubhuti.knit.R;
@@ -36,7 +35,6 @@ import com.anubhuti.knit.menu.DrawerAdapter;
 import com.anubhuti.knit.menu.DrawerItem;
 import com.anubhuti.knit.menu.SimpleItem;
 import com.anubhuti.knit.menu.SpaceItem;
-import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -157,8 +155,8 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 showFragment(eventsFragment);
                 break;
             case 2:
-                StartFragment startFragment=new StartFragment();
-                showFragment(startFragment);
+                StarFragment starFragment =new StarFragment();
+                showFragment(starFragment);
                 break;
             case 3:
                 ContactUsFragment fragment=new ContactUsFragment();
@@ -320,6 +318,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     }
 
     public void openSchedule(View view) {
-
+        Intent intent=new Intent(this,ScheduleActivity.class);
+        startActivity(intent);
     }
 }

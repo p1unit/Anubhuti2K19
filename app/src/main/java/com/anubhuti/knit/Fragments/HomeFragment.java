@@ -193,7 +193,7 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
 
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date firstDate = new Date();
-        Date secondDate = new Date(1550773800000L);
+        Date secondDate = new Date(1550835000000L);
 
         Log.e("Dates",firstDate+" -- "+secondDate);
 
@@ -231,8 +231,6 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
                 response1.setData(list);
                 fireBaseData.setUpcoming(response1);
                 showData1(list);
-
-
 
             }
 

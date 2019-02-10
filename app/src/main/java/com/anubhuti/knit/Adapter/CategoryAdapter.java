@@ -28,6 +28,7 @@ public class CategoryAdapter extends  RecyclerView.Adapter<CategoryAdapter.MyVie
     {
         this.listner=listner;
         this.list = list;
+        Log.e("daffta",String.valueOf(list.size()));
     }
 
     @NonNull
@@ -43,6 +44,8 @@ public class CategoryAdapter extends  RecyclerView.Adapter<CategoryAdapter.MyVie
 
         holder.event_name.setText(list.get(i).getName());
         holder.setBackGround(list.get(i).getImageUrl());
+
+        Log.e("daffta",String.valueOf(list.size()));
 
     }
 

@@ -11,14 +11,18 @@
         android:allowBackup="true"
         android:icon="@drawable/anubhti_icon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:largeHeap="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.PopUpContact"
+        <activity android:name=".Activities.ScheduleActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
+        <activity
+            android:name=".Activities.PopUpContact"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -27,9 +31,11 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Activities.HomeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.MainActivity"
+        <activity
+            android:name=".Activities.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,16 +43,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.LoginActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-        <activity android:name=".Activities.EventDiscription"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.EventListActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.EventDiscription"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.EventListActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
