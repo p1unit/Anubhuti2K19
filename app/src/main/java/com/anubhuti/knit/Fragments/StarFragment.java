@@ -163,6 +163,7 @@ public class StarFragment extends Fragment implements CardStackListener, Categor
     public void callId(EventCatogry obj) {
         service=new EventListService(this);
         service.getStarDes(obj.getId());
+        showPd();
     }
 
     @Override
@@ -172,11 +173,12 @@ public class StarFragment extends Fragment implements CardStackListener, Categor
         intent.putExtra("eventData",response);
         intent.putExtra("isShow",false);
         startActivity(intent);
+        pd.dismiss();
     }
 
     @Override
     public void errorResponse() {
-
+        pd.dismiss();
     }
 
     //----------------  Star Data -------------------------------------------------\\

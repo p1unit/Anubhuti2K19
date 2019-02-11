@@ -93,7 +93,6 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 createItemFor(POS_ENQUIRY),
                 createItemFor(POS_TEAM_DETAILS),
                 createItemFor(POS_SPONSER_DETAIL),
-                new SpaceItem(10),
                 createItemFor(POS_SHARE_APP),
                 createItemFor(POS_RATE_US)));
         adapter.setListener(this);
@@ -170,10 +169,10 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 SponserFragment sponserFragment=new SponserFragment();
                 showFragment(sponserFragment);
                 break;
-            case 7:
+            case 6:
                 rateApp();
                 break;
-            case 8:
+            case 7:
                 shareApp();
                 break;
         }
@@ -318,7 +317,10 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
     }
 
     public void openSchedule(View view) {
-        Intent intent=new Intent(this,ScheduleActivity.class);
-        startActivity(intent);
+
+        String url = "https://drive.google.com/open?id=1CBfUy8ruUq4vapaa_5rc9VvAv6GNlUDh";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 }
