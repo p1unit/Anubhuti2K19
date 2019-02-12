@@ -434,7 +434,7 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
 
         if (!b) {
             player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-            player.loadVideo(str);
+            player.cueVideo(str);
             player.play();
         }
     }

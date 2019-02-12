@@ -97,7 +97,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 createItemFor(POS_RATE_US)));
         adapter.setListener(this);
 
-
+//        setSpace();
 
         RecyclerView list = findViewById(R.id.list);
         list.setNestedScrollingEnabled(true);
@@ -117,21 +117,26 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             case Configuration.SCREENLAYOUT_SIZE_LARGE:
                 sz1 = 10;
                 sz2 = 50;
+                Config.toastShort(this,"small");
                 break;
             case Configuration.SCREENLAYOUT_SIZE_NORMAL:
                 sz1 = 30;
                 sz2 = 56;
+                Config.toastShort(this,"medium");
                 break;
             case Configuration.SCREENLAYOUT_SIZE_SMALL:
                 sz1 = 20;
                 sz2 = 58;
+                Config.toastShort(this,"large");
                 break;
             default:
                 sz1 = 15;
                 sz2 = 56;
+
+                Config.toastShort(this,"default");
         }
 
-        userMigration.setScreenSize(sz1,sz2);
+//        userMigration.setScreenSize(sz1,sz2);
 
 //        space.setMinimumWidth(userMigration.getsz1());
     }
@@ -184,7 +189,6 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.container_home, fragment);

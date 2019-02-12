@@ -107,7 +107,7 @@ public class TeamviewAdapter extends RecyclerView.Adapter<TeamviewAdapter.MyView
         holder.post.setText(teamDetail.getPost());
         holder.setImage(teamDetail.getImageUrl());
 
-        if(teamDetail.getPost().equals("Director")||teamDetail.getPost().equals("Chairman")||teamDetail.getPost().equals("Convenor")){
+        if(teamDetail.getPriority().equals("1") || teamDetail.getPriority().equals("5") || teamDetail.getPriority().equals("10")){
             holder.phone.setVisibility(View.INVISIBLE);
             holder.email.setVisibility(View.INVISIBLE);
             holder.fb.setVisibility(View.INVISIBLE);

@@ -158,7 +158,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Config.toastShort(this,"Welcome to our Castle");
             loginDone();
         } catch (ApiException e) {
-//            Config.toastShort(this,String.valueOf(e.getStatusCode()));
+            Config.toastShort(this,Config.ERROR_TOAST);
             Config.logE("signInResult:failed",String.valueOf(e.getStatusCode()));
 
         }

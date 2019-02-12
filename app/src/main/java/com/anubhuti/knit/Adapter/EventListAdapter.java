@@ -15,6 +15,7 @@ import com.anubhuti.knit.Interfaces.Detail_RegisterInterface;
 import com.anubhuti.knit.Model.EventTypeModel;
 import com.anubhuti.knit.R;
 import com.anubhuti.knit.Utils.ApplicationContextProvider;
+import com.anubhuti.knit.Utils.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,11 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         }
 
         private void getRegister(int adapterPosition) {
-            anInterface.registerEvent(list.get(adapterPosition).getRegUrl());
+            try {
+                anInterface.registerEvent(list.get(adapterPosition).getRegUrl());
+            }catch (NullPointerException e){
+                Config.toastShort(ApplicationContextProvider.getContext(),"Registration of this event will start soon");
+            }
         }
 
         private void getDetail(int adapterPosition) {
