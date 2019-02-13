@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity  {
 
         userMigration=new UserMigration();
 
+        userMigration.setuserLogin();
+
         FirebaseDatabase.getInstance().getReference("apkVersion").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

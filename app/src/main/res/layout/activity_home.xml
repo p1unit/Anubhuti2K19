@@ -32,21 +32,11 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_marginEnd="60dp"
+                    android:layout_marginEnd="10dp"
                     android:padding="2dp"
                     android:onClick="openSchedule"
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_calendar" />
-
-                <ImageView
-                    android:id="@+id/logout"
-                    android:onClick="logout"
-                    android:padding="2dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/ic_logout_new"
-                    android:layout_height="30dp" />
 
 
             </RelativeLayout>
