@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anubhuti.knit.Adapter.PastAndFutureAdapter;
@@ -77,6 +78,7 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
     private CardStackLayoutManager manager;
     private CardStackAdapter adapter;
     private CardStackView cardStackView;
+    private TextView future;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,6 +91,8 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        future=view.findViewById(R.id.future_text);
+        future.setVisibility(View.INVISIBLE);
         upcomingRecycler=(RecyclerView)view.findViewById(R.id.upcoming_recycler);
 //        pastRecycler=(RecyclerView)view.findViewById(R.id.past_recycler);
         addressRecycler=(RecyclerView)view.findViewById(R.id.address_recycler);
@@ -193,17 +197,29 @@ public class HomeFragment extends Fragment implements YouTubePlayer.OnInitialize
 
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date firstDate = new Date();
+//        Date firstDate=new Date(1550835000000L);
         Date secondDate = new Date(1550835000000L);
+        Date thirdDate =new Date(1551119400000L);
 
-        Log.e("Dates",firstDate+" -- "+secondDate);
+        Log.e("Dates",firstDate+" -- "+secondDate+" -- "+thirdDate);
 
-        long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
+        long diffInMillies = (secondDate.getTime() - firstDate.getTime());
         long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
 
         Log.e("Time",diffInMillies+" -- "+diff);
 
 
-        mCvCountdownView.start(diffInMillies);
+        if(firstDate.getTime()<secondDate.getTime()) {
+            future.setVisibility(View.GONE);
+            mCvCountdownView.start(diffInMillies);
+        } else if(firstDate.getTime()>secondDate.getTime() && firstDate.getTime()<thirdDate.getTime()) {
+            mCvCountdownView.setVisibility(View.GONE);
+            future.setVisibility(View.VISIBLE);
+            future.setText("Enjoy the Fest");
+        }else {
+            mCvCountdownView.setVisibility(View.GONE);
+            future.setVisibility(View.VISIBLE);
+        }
     }
 
 

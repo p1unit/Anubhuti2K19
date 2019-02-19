@@ -192,7 +192,11 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.container_home, fragment);
-                        fragmentTransaction.commit();
+                        try {
+                            fragmentTransaction.commit();
+                        } catch (IllegalStateException e) {
+                            fragmentTransaction.commitAllowingStateLoss();
+                        }
                     }
                 }, 300);
 
@@ -282,7 +286,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
         final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
         try {
-            Config.toastShort(ApplicationContextProvider.getContext(), "Thanks for your Intrest :D");
+            Config.toastShort(ApplicationContextProvider.getContext(), "Thanks for your Interest :-)");
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         }
         catch (android.content.ActivityNotFoundException anfe) {

@@ -57,6 +57,18 @@
                 app:suffixMinute="Minutes"
                 app:suffixSecond="Seconds" />
 
+            <TextView
+                android:id="@+id/future_text"
+                android:layout_marginBottom="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/main_font"
+                android:text="See you on next Anubhuti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
