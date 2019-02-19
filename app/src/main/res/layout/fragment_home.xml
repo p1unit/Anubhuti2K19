@@ -65,7 +65,7 @@
                 android:textSize="20sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/main_font"
-                android:text="See you on next Anubhuti"
+                android:text="See you in next Anubhuti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
