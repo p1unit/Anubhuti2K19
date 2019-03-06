@@ -19,6 +19,9 @@
 * [Puneet Kumar Patel](https://github.com/p1unit)
 * [Athrva Upadhyay](https://github.com/athrva12)
 
+## License
+* Please check out [LICENSE](https://github.com/p1unit/Anubhuti2K19/blob/master/LICENSE) for more information.
+ 
 [![alt text][image]][hyperlink]
 
   [hyperlink]: https://play.google.com/store/apps/details?id=com.anubhuti.knit
